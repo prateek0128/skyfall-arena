@@ -1,0 +1,181 @@
+{
+  "generatedAt": "2026-10-16T20:50:53.858Z",
+  "profile": {
+    "rooms": 1,
+    "playersPerRoom": 2,
+    "connections": 2,
+    "warmupSeconds": 2,
+    "measurementSeconds": 5.001756735000001,
+    "inputHz": 30,
+    "fire": false,
+    "scenario": "flight",
+    "aimPattern": "legacy fixed forward/upward",
+    "activityThresholds": {
+      "minAcksPerSecond": 15,
+      "minShotsPerSecond": 0,
+      "minMovementPerSecond": 0.03,
+      "maxShotGapMs": 500
+    },
+    "warmupFire": false,
+    "scope": "Flight/snapshot capacity"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+    "logicalCpus": 8
+  },
+  "method": "Dedicated compiled Node server child; real ws bots in parent on same machine/loopback; no rendering/TLS/WAN. Per-IP admission bursts lifted for co-located bots, all payload/per-socket validation retained.",
+  "server": {
+    "elapsedMs": 5012.347457,
+    "ticks": 151,
+    "tickMs": {
+      "count": 151,
+      "p50": 0.28100799999992887,
+      "p95": 0.8694249999998647,
+      "p99": 1.218681999999717,
+      "max": 1.2943609999997534
+    },
+    "overBudgetTicks": 0,
+    "droppedSimulationMs": 0,
+    "snapshotDeliveries": 150,
+    "outboundBytes": 153338,
+    "inboundMessages": 294,
+    "rejected": 0,
+    "heartbeatTimeouts": 0,
+    "backpressureDisconnects": 0,
+    "cpuPercentOfOneCore": 4.522631400650723,
+    "rssMiB": 94.46875,
+    "peakRssLifetimeMiB": 94.484375,
+    "heapMiB": 12.697113037109375,
+    "eventLoopP99Ms": 23.150591
+  },
+  "client": {
+    "snapshotHz": {
+      "count": 2,
+      "p50": 14.994731646020364,
+      "p95": 14.994731646020364,
+      "p99": 14.994731646020364,
+      "max": 14.994731646020364
+    },
+    "snapshotGapMs": {
+      "count": 148,
+      "p50": 67.34769700000015,
+      "p95": 70.32374900000013,
+      "p99": 96.88306499999999,
+      "max": 100.03334300000006
+    },
+    "unexpectedDisconnects": 0,
+    "errors": [],
+    "allPilotsVerifiedActive": true,
+    "pilotChecks": [
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 147,
+        "shotsAdvance": 0,
+        "maxDistance": 3.7307945060634133,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 2,
+        "minimumAlive": 2,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 5013.642193,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 0,
+            "distance": 5.711793467396751
+          },
+          {
+            "acks": 30,
+            "shots": 0,
+            "distance": 7.039672306935103
+          },
+          {
+            "acks": 30,
+            "shots": 0,
+            "distance": 6.443748288613693
+          },
+          {
+            "acks": 29,
+            "shots": 0,
+            "distance": 5.940379053619073
+          },
+          {
+            "acks": 29,
+            "shots": 0,
+            "distance": 5.13184329757869
+          }
+        ],
+        "intents": {
+          "cover": 147,
+          "skirmish": 0,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 147,
+        "shotsAdvance": 0,
+        "maxDistance": 2.683525670199395,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 2,
+        "minimumAlive": 2,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 5013.75405,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 0,
+            "distance": 4.290128037031378
+          },
+          {
+            "acks": 30,
+            "shots": 0,
+            "distance": 4.843675250634289
+          },
+          {
+            "acks": 30,
+            "shots": 0,
+            "distance": 4.008234583042636
+          },
+          {
+            "acks": 29,
+            "shots": 0,
+            "distance": 5.0344994175499185
+          },
+          {
+            "acks": 29,
+            "shots": 0,
+            "distance": 3.855125211777942
+          }
+        ],
+        "intents": {
+          "cover": 147,
+          "skirmish": 0,
+          "unsafe": 0,
+          "stale": 0
+        }
+      }
+    ]
+  },
+  "checks": {
+    "allPilotsActive": true,
+    "noDisconnects": true,
+    "noErrors": true,
+    "tickP95UnderBudget": true,
+    "lessThanOnePercentOverBudget": true,
+    "noDroppedSimulationTime": true,
+    "minSnapshotHz": true,
+    "maxSnapshotGapUnder500ms": true
+  },
+  "passed": true
+}

@@ -1,0 +1,743 @@
+{
+  "generatedAt": "2026-10-16T20:45:33.732Z",
+  "profile": {
+    "rooms": 1,
+    "playersPerRoom": 8,
+    "connections": 8,
+    "warmupSeconds": 3,
+    "measurementSeconds": 11.999775295,
+    "inputHz": 30,
+    "fire": true,
+    "scenario": "skirmish",
+    "aimPattern": "snapshot-informed safe cover fire plus two authoritative hits per pilot; no server overrides",
+    "activityThresholds": {
+      "minAcksPerSecond": 15,
+      "minShotsPerSecond": 4,
+      "minMovementPerSecond": 0.03,
+      "maxShotGapMs": 500
+    },
+    "scope": "Sustained nonlethal cover fire/skirmish, not elimination-heavy combat"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+    "logicalCpus": 8
+  },
+  "method": "Dedicated compiled Node server child; real ws bots in parent on same machine/loopback; no rendering/TLS/WAN. Per-IP admission bursts lifted for co-located bots, all payload/per-socket validation retained.",
+  "server": {
+    "elapsedMs": 12009.52167,
+    "ticks": 361,
+    "tickMs": {
+      "count": 361,
+      "p50": 1.114569000001211,
+      "p95": 2.6100100000003295,
+      "p99": 3.343832999999904,
+      "max": 10.476994999999079
+    },
+    "overBudgetTicks": 0,
+    "droppedSimulationMs": 0,
+    "snapshotDeliveries": 1448,
+    "outboundBytes": 6253336,
+    "inboundMessages": 2840,
+    "rejected": 0,
+    "heartbeatTimeouts": 0,
+    "backpressureDisconnects": 0,
+    "cpuPercentOfOneCore": 7.719932778971371,
+    "rssMiB": 98.17578125,
+    "peakRssLifetimeMiB": 98.53125,
+    "heapMiB": 14.214752197265625,
+    "eventLoopP99Ms": 24.182783
+  },
+  "client": {
+    "snapshotHz": {
+      "count": 8,
+      "p50": 15.083615780323662,
+      "p95": 15.083615780323662,
+      "p99": 15.083615780323662,
+      "max": 15.083615780323662
+    },
+    "snapshotGapMs": {
+      "count": 1440,
+      "p50": 67.02671199999986,
+      "p95": 69.35069599999952,
+      "p99": 84.32830599999943,
+      "max": 118.21897300000091
+    },
+    "unexpectedDisconnects": 0,
+    "errors": [],
+    "allPilotsVerifiedActive": true,
+    "pilotChecks": [
+      {
+        "alive": true,
+        "health": 25,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 2.6382897400104577,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 75,
+        "maxShotGapMs": 205.75134699999944,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.059036151342591
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.948605425274452
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.109313703306306
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.1181741143118895
+          },
+          {
+            "acks": 27,
+            "shots": 5,
+            "distance": 5.353765458760254
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 7.415545832077429
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.409142864700764
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.1180926227991606
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 7.082296262961725
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 8.418340072286188
+          },
+          {
+            "acks": 27,
+            "shots": 5,
+            "distance": 5.381085007255158
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 7.593210478908958
+          }
+        ],
+        "intents": {
+          "cover": 355,
+          "skirmish": 0,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 2.0710518128744493,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 205.84530300000006,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 4.286814571735933
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.780858378524521
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.356691715607233
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.116883636565044
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.345641570596755
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 3.55560159310348
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.788640954744082
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.666439743858575
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.826348400160283
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.6876453206773663
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.602454607866394
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 4.11279124025492
+          }
+        ],
+        "intents": {
+          "cover": 355,
+          "skirmish": 0,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 75,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 2.0909261969619997,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 25,
+        "maxShotGapMs": 205.86798199999976,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 3.88419938203475
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.675595054883921
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.061933089399144
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 6.036072972063552
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.593338376830689
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.724546299889646
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.381699469837684
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.490677823975439
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.194295288772427
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.927483802817605
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.6406938589636235
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 6.573904627122268
+          }
+        ],
+        "intents": {
+          "cover": 340,
+          "skirmish": 15,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 75,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 4.789674518705764,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 25,
+        "maxShotGapMs": 205.95147899999938,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 9.142923521810843
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.53186393128953
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 9.15689787435433
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.635778143915076
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.778192637738178
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 6.536947508464534
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.913274070421863
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.382397530768705
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 6.340663549807791
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.054600793393873
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.6210492135976855
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 7.875047971173675
+          }
+        ],
+        "intents": {
+          "cover": 339,
+          "skirmish": 16,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 2.23371878609765,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 1,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 206.1858370000009,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 3.8474029545274355
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.856315201424147
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.552813878761368
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.978842198394066
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.88684134110819
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.086563762704367
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.004783015446948
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.190625957875521
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.5317408339596605
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.693641904683572
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.5446591083180765
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.478228110590815
+          }
+        ],
+        "intents": {
+          "cover": 355,
+          "skirmish": 0,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 2.047622087709185,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 205.96767499999987,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.200461707588339
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.034545771011236
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.286702931779628
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.254762057774803
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.351182633316583
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.447899321091126
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.169951376207785
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.505549142181776
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 3.8754311740836687
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.3843538638444484
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.772189171213002
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.02630517734604
+          }
+        ],
+        "intents": {
+          "cover": 355,
+          "skirmish": 0,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 50,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 4.924894411747262,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 50,
+        "maxShotGapMs": 205.92601100000138,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 9.288541505022003
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.278110971589555
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 9.28253683196868
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 6.549833491018774
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.360464673727687
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 7.016389283144943
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.491374279781769
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.480843876236879
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 7.075793433068473
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.595444243800648
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 8.55043517382506
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 8.330983233155951
+          }
+        ],
+        "intents": {
+          "cover": 343,
+          "skirmish": 12,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 50,
+        "ackAdvance": 356,
+        "shotsAdvance": 60,
+        "maxDistance": 2.0544847134459734,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 50,
+        "maxShotGapMs": 205.8656979999996,
+        "windows": [
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.172656069909337
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.148424644426786
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.348431076316528
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.0411596907893355
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.0868195072756635
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 3.795944783845779
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.539008854225595
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.834978832880251
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.478944722412235
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.461992498023599
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.740273997466447
+          },
+          {
+            "acks": 31,
+            "shots": 5,
+            "distance": 5.124417521366138
+          }
+        ],
+        "intents": {
+          "cover": 342,
+          "skirmish": 13,
+          "unsafe": 0,
+          "stale": 0
+        }
+      }
+    ]
+  },
+  "checks": {
+    "allPilotsActive": true,
+    "validatedSkirmishEveryPilot": false,
+    "noDisconnects": true,
+    "noErrors": true,
+    "tickP95UnderBudget": true,
+    "lessThanOnePercentOverBudget": true,
+    "noDroppedSimulationTime": true,
+    "minSnapshotHz": true,
+    "maxSnapshotGapUnder500ms": true
+  },
+  "passed": false
+}

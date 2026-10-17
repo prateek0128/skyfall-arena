@@ -1,0 +1,35 @@
+{
+  "note": "Compression sizes are offline estimates, not evidence the serving CDN sends compressed responses.",
+  "assets": [
+    {
+      "file": "World-B_W94wpK.js",
+      "bytes": 221017,
+      "gzipBytes": 70328,
+      "brotliBytes": 61787
+    },
+    {
+      "file": "index-DnB2Ssta.css",
+      "bytes": 12189,
+      "gzipBytes": 3565,
+      "brotliBytes": 3142
+    },
+    {
+      "file": "index-KM0p1WWa.js",
+      "bytes": 247872,
+      "gzipBytes": 77972,
+      "brotliBytes": 67239
+    },
+    {
+      "file": "physics-runtime-DW2HfIcf.js",
+      "bytes": 2237128,
+      "gzipBytes": 830285,
+      "brotliBytes": 615480
+    },
+    {
+      "file": "three-runtime-CAV4-VF5.js",
+      "bytes": 703765,
+      "gzipBytes": 181229,
+      "brotliBytes": 146789
+    }
+  ]
+}

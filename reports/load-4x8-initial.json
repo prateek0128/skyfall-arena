@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-10-16T20:07:52.232Z",
+  "profile": {
+    "rooms": 4,
+    "playersPerRoom": 8,
+    "connections": 32,
+    "warmupSeconds": 5,
+    "measurementSeconds": 30.000272568,
+    "inputHz": 30,
+    "fire": true
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+    "logicalCpus": 8
+  },
+  "method": "Dedicated compiled Node server child; real ws bots in parent on same machine/loopback; no rendering/TLS/WAN. Per-IP admission bursts lifted for co-located bots, all payload/per-socket validation retained.",
+  "server": {
+    "elapsedMs": 30009.956938000003,
+    "ticks": 900,
+    "tickMs": {
+      "count": 900,
+      "p50": 2.2210630000008678,
+      "p95": 6.253636000001279,
+      "p99": 13.80632499999956,
+      "max": 69.2753589999993
+    },
+    "overBudgetTicks": 3,
+    "droppedSimulationMs": 0,
+    "snapshotDeliveries": 14400,
+    "outboundBytes": 58703336,
+    "inboundMessages": 28256,
+    "rejected": 0,
+    "heartbeatTimeouts": 0,
+    "backpressureDisconnects": 0,
+    "cpuPercentOfOneCore": 12.38693880061175,
+    "rssMiB": 79.828125,
+    "peakRssLifetimeMiB": 104.33984375,
+    "heapMiB": 17.03411865234375,
+    "eventLoopP99Ms": 34.865151
+  },
+  "client": {
+    "snapshotHz": {
+      "count": 32,
+      "p50": 14.999863717238211,
+      "p95": 14.999863717238211,
+      "p99": 14.999863717238211,
+      "max": 14.999863717238211
+    },
+    "snapshotGapMs": {
+      "count": 14368,
+      "p50": 66.8765540000004,
+      "p95": 70.89817399999811,
+      "p99": 104.49945800000205,
+      "max": 168.34258500000215
+    },
+    "unexpectedDisconnects": 0,
+    "errors": [],
+    "allPilotsVerifiedActive": false
+  },
+  "checks": {
+    "allPilotsActive": false,
+    "noDisconnects": true,
+    "noErrors": true,
+    "tickP95UnderBudget": true,
+    "lessThanOnePercentOverBudget": true,
+    "noDroppedSimulationTime": true,
+    "minSnapshotHz": true,
+    "maxSnapshotGapUnder500ms": true
+  },
+  "passed": false
+}

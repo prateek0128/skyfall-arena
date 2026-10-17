@@ -1,0 +1,39 @@
+{
+  "name": "skyfall-arena",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "npm run build:client && npm run build:server",
+    "typecheck": "tsc -b && tsc -p tsconfig.server.json --noEmit",
+    "test": "node --import tsx --test src/game/logic.test.ts shared/protocol.test.ts server/simulation.test.ts server/rooms.test.ts server/integration.test.ts server/hardening.test.ts scripts/load-scenario.test.mjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "dev:server": "tsx server/index.ts",
+    "build:client": "tsc -b && vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "start:server": "node dist-server/server/index.js",
+    "loadtest": "node scripts/load-test.mjs",
+    "bundle:report": "node scripts/bundle-report.mjs"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.19.2",
+    "@react-three/fiber": "^9.0.0",
+    "@react-three/rapier": "^2.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.180.0",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.180.0",
+    "@types/ws": "^8.18.2",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.0",
+    "vite": "^7.0.0"
+  }
+}

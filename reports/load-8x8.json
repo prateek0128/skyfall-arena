@@ -1,0 +1,590 @@
+{
+  "generatedAt": "2026-10-16T20:12:47.801Z",
+  "profile": {
+    "rooms": 8,
+    "playersPerRoom": 8,
+    "connections": 64,
+    "warmupSeconds": 5,
+    "measurementSeconds": 30.001750394999995,
+    "inputHz": 30,
+    "fire": false,
+    "aimPattern": "forward and upward; deterministic driver phase from measurement setup"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+    "logicalCpus": 8
+  },
+  "method": "Dedicated compiled Node server child; real ws bots in parent on same machine/loopback; no rendering/TLS/WAN. Per-IP admission bursts lifted for co-located bots, all payload/per-socket validation retained.",
+  "server": {
+    "elapsedMs": 30012.912392000002,
+    "ticks": 900,
+    "tickMs": {
+      "count": 900,
+      "p50": 3.9908329999962007,
+      "p95": 6.9451999999982945,
+      "p99": 9.435474999999315,
+      "max": 71.04455600000074
+    },
+    "overBudgetTicks": 2,
+    "droppedSimulationMs": 0,
+    "snapshotDeliveries": 28800,
+    "outboundBytes": 100594696,
+    "inboundMessages": 57024,
+    "rejected": 0,
+    "heartbeatTimeouts": 0,
+    "backpressureDisconnects": 0,
+    "cpuPercentOfOneCore": 20.687399206399547,
+    "rssMiB": 111.68359375,
+    "peakRssLifetimeMiB": 111.68359375,
+    "heapMiB": 19.257675170898438,
+    "eventLoopP99Ms": 27.607039
+  },
+  "client": {
+    "snapshotHz": {
+      "count": 64,
+      "p50": 14.999124853561733,
+      "p95": 14.999124853561733,
+      "p99": 14.999124853561733,
+      "max": 14.999124853561733
+    },
+    "snapshotGapMs": {
+      "count": 28736,
+      "p50": 66.95080000000235,
+      "p95": 69.92665800000032,
+      "p99": 73.41776499999833,
+      "max": 136.4127809999991
+    },
+    "unexpectedDisconnects": 0,
+    "errors": [],
+    "allPilotsVerifiedActive": true,
+    "pilotChecks": [
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.4342113977842876,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0099319652629712,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0162358305755137,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.608524264112783,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0763070853636085,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.2298797837785895,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 4.0398138140825415,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0724488676125086,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.942405237563352,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1730851021023048,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.239029935353518,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.8624445127452907,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.252094450263739,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1898028994968834,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 4.0657025880835045,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 2.9965103417782415,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1930963947007855,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.639720394548855,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.5406143414136153,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 4.251578522507056,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.3818843055581262,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.501113657857233,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.702680758283876,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1978932022147744,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.942405237563352,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0659168579499134,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.3008134825073756,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.997380383452425,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.034224525815873,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1431483691308504,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.9312304664445645,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1574019161735607,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.818764626371577,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.565084348497552,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.42145013280482,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 4.236869136317106,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.434918143992274,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.5703078313429937,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.7234763338304115,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1381211529578423,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.874052170390049,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0629111434462475,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.167270103538393,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.9583226258938304,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 2.9376129739061625,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.3925598678681967,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 4.140271629651556,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0673132302468877,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.6328169237255685,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.47363786032782,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.351067641480304,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.9861667686771707,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.5231157748110724,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.582707680045129,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.830355442508983,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 891,
+        "shotsAdvance": 0,
+        "maxDistance": 3.4876809886337883,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 4.247990847784966,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.1593556552163227,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 2.960647915201377,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.7743529338195363,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.2597051083506337,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.357264054972306,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.8755427065862613,
+        "nonPlayingSnapshots": 0
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 893,
+        "shotsAdvance": 0,
+        "maxDistance": 3.0045965795697587,
+        "nonPlayingSnapshots": 0
+      }
+    ]
+  },
+  "checks": {
+    "allPilotsActive": true,
+    "noDisconnects": true,
+    "noErrors": true,
+    "tickP95UnderBudget": true,
+    "lessThanOnePercentOverBudget": true,
+    "noDroppedSimulationTime": true,
+    "minSnapshotHz": true,
+    "maxSnapshotGapUnder500ms": true
+  },
+  "passed": true
+}

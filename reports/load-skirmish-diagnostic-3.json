@@ -1,0 +1,1463 @@
+{
+  "generatedAt": "2026-10-16T20:46:25.247Z",
+  "profile": {
+    "rooms": 1,
+    "playersPerRoom": 8,
+    "connections": 8,
+    "warmupSeconds": 5,
+    "measurementSeconds": 30.001332533,
+    "inputHz": 30,
+    "fire": true,
+    "scenario": "skirmish",
+    "aimPattern": "snapshot-informed safe cover fire plus two authoritative hits per pilot; no server overrides",
+    "activityThresholds": {
+      "minAcksPerSecond": 15,
+      "minShotsPerSecond": 4,
+      "minMovementPerSecond": 0.03,
+      "maxShotGapMs": 500
+    },
+    "scope": "Sustained nonlethal cover fire/skirmish, not elimination-heavy combat"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz",
+    "logicalCpus": 8
+  },
+  "method": "Dedicated compiled Node server child; real ws bots in parent on same machine/loopback; no rendering/TLS/WAN. Per-IP admission bursts lifted for co-located bots, all payload/per-socket validation retained.",
+  "server": {
+    "elapsedMs": 30011.350903000002,
+    "ticks": 900,
+    "tickMs": {
+      "count": 900,
+      "p50": 1.03713400000197,
+      "p95": 2.685921000000235,
+      "p99": 3.92046499999924,
+      "max": 65.33921999999984
+    },
+    "overBudgetTicks": 1,
+    "droppedSimulationMs": 0,
+    "snapshotDeliveries": 3600,
+    "outboundBytes": 15628760,
+    "inboundMessages": 7104,
+    "rejected": 0,
+    "heartbeatTimeouts": 0,
+    "backpressureDisconnects": 0,
+    "cpuPercentOfOneCore": 7.218635398993122,
+    "rssMiB": 98.95703125,
+    "peakRssLifetimeMiB": 98.95703125,
+    "heapMiB": 15.713676452636719,
+    "eventLoopP99Ms": 23.789567
+  },
+  "client": {
+    "snapshotHz": {
+      "count": 8,
+      "p50": 14.999333763092755,
+      "p95": 14.999333763092755,
+      "p99": 14.999333763092755,
+      "max": 14.999333763092755
+    },
+    "snapshotGapMs": {
+      "count": 3592,
+      "p50": 67.1696039999988,
+      "p95": 70.13611499999388,
+      "p99": 86.03434299999935,
+      "max": 131.52461400000175
+    },
+    "unexpectedDisconnects": 0,
+    "errors": [],
+    "allPilotsVerifiedActive": true,
+    "pilotChecks": [
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 887,
+        "shotsAdvance": 150,
+        "maxDistance": 3.038649382506591,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 219.01108699999895,
+        "windows": [
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 9.471936774998841
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.531578491063308
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.559385404502571
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.403725224590538
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.474624946976689
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.70391791693252
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.001873476642567
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.3537039848030865
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.985898905997163
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.233299557146092
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.717772705666524
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.488702539331278
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.58060702148528
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.662051049756684
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.03962107245253
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.378716532833467
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.024072114665079
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.7856637992590336
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.299104875491901
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.481950695998334
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.695183489642509
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.582680423441323
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.792082838010828
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.163246886323865
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.246208172738721
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.341410589357755
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.215331361928606
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.443944677800669
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.739142966452782
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.185822684028316
+          }
+        ],
+        "intents": {
+          "cover": 881,
+          "skirmish": 7,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 100,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 2.469893041912282,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 0,
+        "healthStart": 100,
+        "damageReceived": 0,
+        "maxShotGapMs": 218.9828039999993,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.115823058778169
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.529420190211769
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.41292645800173
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.539263996051945
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.6393540730126914
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.002859358589091
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.35841465971595
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.310872080080794
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.122704886483978
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.823899736433043
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.861579419545813
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.921721058004946
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 2.891056302062819
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.476117600455615
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.875988608369002
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.6559942124061315
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.127403898943235
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 2.5442005081917847
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 1.985824919328758
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.4251089982431777
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.0122196930223306
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.2895302515039937
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.8515111671972155
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.3654404687247474
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.974566088087831
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.910332365837013
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.94969205334762
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.269646917999681
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.860923834890495
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.113482493332561
+          }
+        ],
+        "intents": {
+          "cover": 884,
+          "skirmish": 4,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 50,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 2.902725246255528,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 50,
+        "maxShotGapMs": 218.92585099999997,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.798723620695287
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.4398625045807236
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.0942148547675545
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.527265324129685
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.5885710270330717
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.91575025372721
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.179508436132213
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.394916034159212
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.730296997081482
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.438095036710761
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.1737811904313205
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.060943678276466
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 3.812798152857626
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.523095746018571
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.770758733278278
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.466029354837991
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 1.9291149662064637
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 1.7913262892680264
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.1720522809041016
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.1625219673751555
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.8360859670123904
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.246176939584904
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.365161527767434
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.1821476538802345
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.414900696750122
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.006663769759612
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.5641939567288805
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.740845441166531
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.0057115693060865
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.8650156281890693
+          }
+        ],
+        "intents": {
+          "cover": 877,
+          "skirmish": 11,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 50,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 4.4587725802164115,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 50,
+        "maxShotGapMs": 218.9491479999997,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.3704499128270236
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.977026963452062
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.133190805689984
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.896561634306878
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.7398196055388215
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.779622593718466
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.946443046355984
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.943430591027598
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.536314480526127
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.237051199929722
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 9.659520102770527
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.039168918744462
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 5.031933802263689
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.9002884630978425
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.978389307263457
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.144927788203918
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.321234433075652
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.6734221179961
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.736207970192882
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.6078139714132265
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.243705243988882
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.467454320438285
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.875704748615341
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.998881227840005
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.445877566977164
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.3487890755474155
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.906427923410056
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 8.79179882439878
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.904534044075147
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.545273089503361
+          }
+        ],
+        "intents": {
+          "cover": 878,
+          "skirmish": 10,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 75,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 2.4825147455723093,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 1,
+        "healthStart": 100,
+        "damageReceived": 25,
+        "maxShotGapMs": 218.85069099999964,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.271716691549929
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.65651582268052
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.6235713680219837
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.1299327239594423
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.5967136471805867
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.7559593651908387
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 3.074580012143379
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.3791397218693127
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.290787692094076
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.484051329473067
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.17487840561416
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.5288658523096625
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.182277350815992
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.186730586141845
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.980847113118917
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.141228262771284
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.089562588483727
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 2.2795260245489413
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.4555096018662557
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.6957191052643936
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.641532315384314
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.25033709169585
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.467180021317606
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.6597420828468454
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.51876005068864
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.421217787573335
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.0625993342867615
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.456179615082996
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.069271524585194
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.829678609291271
+          }
+        ],
+        "intents": {
+          "cover": 886,
+          "skirmish": 2,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 75,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 2.5046213054526847,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 1,
+        "healthStart": 100,
+        "damageReceived": 25,
+        "maxShotGapMs": 218.4766520000012,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.508107857655252
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.994776362301726
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.124311966287739
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.958896848857974
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.612791286964186
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.0132689337981775
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.681692310242811
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.4103683432340715
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.9296551541798825
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.837266351403353
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.970949811566424
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.462369322877415
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.529816287631522
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.918085354447353
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.274006116672107
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.375946152496106
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.008003659911893
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 2.5621447738175642
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.4375240421689095
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.7094092421706937
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.363521764440122
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.17165203376646
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.274714661902555
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.856747471306897
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.825091564976578
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.6049328686700908
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.539342857862502
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.344650745859953
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.600256552234754
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.9662603847132503
+          }
+        ],
+        "intents": {
+          "cover": 886,
+          "skirmish": 2,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 50,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 4.163278190809221,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 50,
+        "maxShotGapMs": 218.24393899999995,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.466315738347644
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.602766836644756
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.17823014792255
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.206452581017433
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.941771733440341
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.81732840166231
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.8655228475368855
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.523925966733523
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 8.115952661076532
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.029490619802822
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.933531413386208
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.124721527734765
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.9104377062783024
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.329833873224948
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.541677108491998
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.548019668924918
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.890443778554456
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.670252927457911
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.108730930441903
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.218150697592494
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 8.224073403162945
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 6.736540560869137
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.092481541974484
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.032840745120672
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 8.030533957176674
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.425385092670225
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 8.291536038854831
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 7.506201147911422
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 7.1602154140433765
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 9.767556174368274
+          }
+        ],
+        "intents": {
+          "cover": 875,
+          "skirmish": 13,
+          "unsafe": 0,
+          "stale": 0
+        }
+      },
+      {
+        "alive": true,
+        "health": 50,
+        "ackAdvance": 888,
+        "shotsAdvance": 150,
+        "maxDistance": 2.383663892817051,
+        "nonPlayingSnapshots": 0,
+        "expectedPlayers": 8,
+        "minimumAlive": 8,
+        "hitsAdvance": 2,
+        "healthStart": 100,
+        "damageReceived": 50,
+        "maxShotGapMs": 218.14162800000122,
+        "windows": [
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 6.03719355624271
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.8698101447862796
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.771855867540725
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.797387302798489
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.722638381501205
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.918282838545005
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.780406273860067
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.887075853487148
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.394829037344709
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.369484099210263
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.269861769403066
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.4631479766815145
+          },
+          {
+            "acks": 28,
+            "shots": 5,
+            "distance": 4.521499632997911
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.204599616764416
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.262891267684267
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 4.664841870138896
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 2.882841509055847
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 2.554681510110126
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.4132943406077048
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 2.7659723576042787
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.373224656266914
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.328327825552499
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.733268961664449
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.926401260219607
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 5.218742723378936
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.982462134813888
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.471175955870926
+          },
+          {
+            "acks": 29,
+            "shots": 5,
+            "distance": 5.852611523171554
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 4.75631737949489
+          },
+          {
+            "acks": 30,
+            "shots": 5,
+            "distance": 3.5291334429675327
+          }
+        ],
+        "intents": {
+          "cover": 873,
+          "skirmish": 15,
+          "unsafe": 0,
+          "stale": 0
+        }
+      }
+    ]
+  },
+  "checks": {
+    "allPilotsActive": true,
+    "validatedSkirmishEveryPilot": false,
+    "noDisconnects": true,
+    "noErrors": true,
+    "tickP95UnderBudget": true,
+    "lessThanOnePercentOverBudget": true,
+    "noDroppedSimulationTime": true,
+    "minSnapshotHz": true,
+    "maxSnapshotGapUnder500ms": true
+  },
+  "passed": false
+}
