@@ -29,11 +29,11 @@ npm run dev
 
 Use Vite's printed URL. Default development origins are exactly `http://localhost:5173`, `http://127.0.0.1:5173`, `http://localhost:4173`, and `http://127.0.0.1:4173`. A different port or LAN address must be added explicitly to `ALLOWED_ORIGINS` in the server shell. Single-player does not open a WebSocket until multiplayer is requested and remains usable if the server is unavailable or misconfigured.
 
-Select **Multiplayer · Private Rooms** in the menu, create a room, and join its six-character code from another tab/window. Everyone readies up, the host starts a three-second countdown, then each pilot clicks **Take control**. Sessions use per-tab session storage; refresh requires reopening multiplayer and choosing **Reconnect saved session**.
+Select **Multiplayer · Private Rooms** in the menu, create a room, and join its six-character code from another tab/window. Use the copy icon beside a room code to copy it; a checkmark and “Copied” confirm success. If clipboard access is unavailable, select the visible code and copy manually. Everyone readies up, the host starts a three-second countdown, then each pilot clicks **Take control**. Sessions use per-tab session storage; refresh requires reopening multiplayer and choosing **Reconnect saved session**.
 
 ## Controls and game rules
 
-- **WASD**: camera-relative movement. **Mouse**: aim/look. **Space**: jetpack. **Shift + Space**: boost. **Left mouse**: fire. Hold **right mouse and drag** if pointer lock is refused.
+- **WASD or arrow keys**: camera-relative movement (equivalent keys do not stack). **Mouse**: aim/look. **Space**: jetpack. **Shift + Space**: boost. **Left mouse**: fire. Hold **right mouse and drag** if pointer lock is refused.
 - **Escape**: pause single-player or open the multiplayer flight menu. A multiplayer match **continues** while its local menu is open. Blur clears held input; stale commands stop after 250 ms of simulation time, while gravity and damage remain active.
 - Fuel drains at 23/s normally or 38/s under boost and regenerates at 19/s without thrust. Empty fuel must recover above 18%. Falls recover at spawn, restore fuel, and cost 25 hull.
 - Single-player: three waves of seven moving/attacking drones, 80 seconds per wave, 3/4/5 hits per drone, +15 hull between waves. Hits award 50; kills award 300 × combo, chained within five seconds up to 5×. Timeout or hull loss defeats; clearing wave three wins. Results include score, kills, active time and accuracy.

@@ -2,7 +2,7 @@ import { useEffect,useRef } from 'react';
 import { useFrame,useThree } from '@react-three/fiber';
 import { Group,PerspectiveCamera,Vector3 } from 'three';
 import { network,useNetwork } from './network';
-import { useControls } from '../game/controls';
+import { useControls, movementInput } from '../game/controls';
 import { updateCamera } from '../game/Camera';
 import { combat } from '../game/events';
 const options={active:()=>network.get().room?.phase==='playing'&&!network.get().menu&&network.get().status==='connected',pause:()=>network.set({menu:true}),subscribe:network.subscribe};
@@ -35,8 +35,8 @@ export function MultiplayerScene(){
    const pos=new Vector3(p.position.x,p.position.y,p.position.z);
    updateCamera(camera as PerspectiveCamera,pos,input.yaw,input.pitch,Math.min(dt,.1),scene.children);
    sent.current+=dt;
-   if(sent.current>=1/30){sent.current=0;const active=options.active()&&p.alive,k=input.keys;
-    network.input({x:active?Number(k.has('KeyD'))-Number(k.has('KeyA')):0,z:active?Number(k.has('KeyS'))-Number(k.has('KeyW')):0,yaw:normalize(input.yaw),pitch:input.pitch,thrust:active&&k.has('Space'),boost:active&&(k.has('ShiftLeft')||k.has('ShiftRight')),fire:active&&input.fire});
+   if(sent.current>=1/30){sent.current=0;const active=options.active()&&p.alive,k=input.keys,axes=movementInput(k);
+    network.input({x:active?axes.x:0,z:active?axes.z:0,yaw:normalize(input.yaw),pitch:input.pitch,thrust:active&&k.has('Space'),boost:active&&(k.has('ShiftLeft')||k.has('ShiftRight')),fire:active&&input.fire});
    }
   }
  });

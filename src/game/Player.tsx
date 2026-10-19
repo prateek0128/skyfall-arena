@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { CapsuleCollider, RigidBody, type RapierRigidBody, useRapier } from '@react-three/rapier';
 import { Group, PerspectiveCamera, Vector3 } from 'three';
-import { useControls } from './controls';
+import { useControls, movementInput } from './controls';
 import { fuelStep, movement } from './logic';
 import { game } from './store';
 import { nextVelocity, simulationDelta } from './physics';
@@ -28,7 +28,8 @@ export function Player(){
   if(exhausted.current&&fuel.current>18)exhausted.current=false;
   const flying=k.has('Space')&&!exhausted.current&&fuel.current>0;
   fuel.current=fuelStep(fuel.current,flying,boost,dt);if(fuel.current===0)exhausted.current=true;
-  const motion=movement(Number(k.has('KeyD'))-Number(k.has('KeyA')),Number(k.has('KeyS'))-Number(k.has('KeyW')),input.yaw,boost&&flying?15:8);
+  const axes=movementInput(k);
+  const motion=movement(axes.x,axes.z,input.yaw,boost&&flying?15:8);
   const velocity=body.current.linvel();
   body.current.setLinvel(nextVelocity(velocity,motion,flying,boost,dt),true);
   if(visual.current)visual.current.rotation.y=input.yaw;

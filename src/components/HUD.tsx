@@ -29,7 +29,7 @@ export function HUD({onMultiplayer}:{onMultiplayer:()=>void}){
    <div className="flight-hint">{s.fuel<18?'FUEL LOW · RELEASE THRUST TO RECHARGE':fallback?'HOLD RIGHT MOUSE TO LOOK · ESC TO PAUSE':'RED RINGS MARK INCOMING FIRE · KEEP MOVING'}</div>
   </>}
   <footer><div className="telemetry"><div className="meter-label"><span><i className="fuel-icon">ϟ</i> JETPACK FUEL</span><b>{Math.round(s.fuel)}<small>%</small></b></div><div className="meter" role="meter" aria-label="Jetpack fuel" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(s.fuel)}><div style={{width:`${s.fuel}%`,background:s.fuel<18?'#efad6e':undefined}}/></div><div className="health"><span>＋ HULL</span><div>{[0,1,2,3].map(i=><i key={i} className={s.health>i*25?'active':''}/>)}</div><b>{s.health}</b></div></div>
-   <div className="key-guide"><div><kbd>W A S D</kbd><span>MOVE</span></div><div><kbd>SPACE</kbd><span>THRUST</span></div><div><kbd>SHIFT</kbd><span>AIR BOOST</span></div><div><kbd>LMB</kbd><span>FIRE</span></div></div><div className="status"><i/> {s.loaded?'SYSTEMS ONLINE':'SYSTEMS LOADING'}<span>PROTOTYPE / 0.2</span></div>
+   <div className="key-guide"><div><kbd>W A S D / ↑ ← ↓ →</kbd><span>MOVE</span></div><div><kbd>SPACE</kbd><span>THRUST</span></div><div><kbd>SHIFT</kbd><span>AIR BOOST</span></div><div><kbd>LMB</kbd><span>FIRE</span></div></div><div className="status"><i/> {s.loaded?'SYSTEMS ONLINE':'SYSTEMS LOADING'}<span>PROTOTYPE / 0.2</span></div>
   </footer>
   {s.phase!=='playing'&&<div className="overlay"><section className={`menu ${over?'results-menu':''}`}>
    <div className="eyebrow"><span className="line"/>{over?victory?'MISSION COMPLETE':'MISSION ENDED':paused?'FLIGHT SUSPENDED':'SURVIVAL PROTOCOL'}</div>
