@@ -6,6 +6,9 @@ import { loadConfig,parseOrigins } from './config';
 import { Bucket,IpLimits } from './limits';
 import { Rooms,type Peer } from './rooms';
 import { idleInput,validateCommand,type ServerMessage } from '../shared/protocol';
+import { readFileSync } from 'node:fs';
+import { parseEnv } from 'node:util';
+const renderEnvironment=parseEnv(readFileSync(new URL('../.env.render.example',import.meta.url),'utf8'));
 const sleep=(ms:number)=>new Promise(r=>setTimeout(r,ms));
 async function until(fn:()=>boolean){const start=Date.now();while(!fn()){if(Date.now()-start>3000)throw new Error('Condition timed out');await sleep(5);}}
 async function socket(port:number,options:ConstructorParameters<typeof WebSocket>[1]={}){
@@ -17,6 +20,30 @@ test('production config fails closed and origins are exact, canonical HTTPS orig
  for(const origin of ['*','null','https://game.example/','https://game.example/path','https://user:pass@game.example','http://game.example'])assert.throws(()=>parseOrigins([origin],true));
  const config=loadConfig({NODE_ENV:'production',ALLOWED_ORIGINS:'https://game.example'});assert.equal(config.allowOriginless,false);assert.deepEqual(config.origins,['https://game.example']);
  for(const env of [{PORT:'0'},{PORT:'2567.2'},{ALLOW_ORIGINLESS:'yes'},{HEARTBEAT_MS:'1'},{ALLOWED_ORIGINS:''}])assert.throws(()=>loadConfig(env));
+});
+test('Render profile binds publicly on its ingress port without changing local defaults or security budgets',()=>{
+ const config=loadConfig(renderEnvironment);
+ assert.equal(renderEnvironment.NODE_ENV,'production');assert.equal(config.host,'0.0.0.0');assert.equal(config.port,10000);
+ assert.deepEqual(config.origins,['https://skyfall-arena-kappa.vercel.app']);assert.equal(config.allowOriginless,false);
+ assert.equal(config.maxConnectionsPerIp,32);assert.equal(config.ipUpgradeBurst,40);assert.equal(config.ipCommandBurst,60);
+ assert.equal(config.heartbeatMs,15000);assert.equal(config.handshakeMs,10000);assert.equal(config.shutdownMs,5000);
+ const local=loadConfig({});assert.equal(local.host,'127.0.0.1');assert.equal(local.port,2567);
+ assert.equal(loadConfig({...renderEnvironment,PORT:'12345'}).port,12345);
+});
+test('Render profile serves probes and root WebSocket upgrades on wildcard bind; rejects missing and lookalike origins',async()=>{
+ const server=await startServer({...loadConfig(renderEnvironment),port:0});
+ let good:Awaited<ReturnType<typeof socket>>|undefined;
+ try{
+  const address=server.http.address();assert.ok(address&&typeof address==='object');assert.equal(address.address,'0.0.0.0');
+  for(const path of ['/health','/ready']){const response=await fetch(`http://127.0.0.1:${server.port}${path}`);assert.equal(response.status,200);assert.equal((await response.json() as {ready:boolean}).ready,true);}
+  good=await socket(server.port,{origin:'https://skyfall-arena-kappa.vercel.app'});
+  good.ws.send(JSON.stringify({v:1,type:'create',name:'Render check'}));
+  await until(()=>good!.messages.some(m=>m.type==='welcome'));
+  for(const origin of [undefined,'https://skyfall-arena-kappa.vercel.app.evil.invalid','http://skyfall-arena-kappa.vercel.app']){
+   const bad=new WebSocket(`ws://127.0.0.1:${server.port}/`,origin?{origin}:{});bad.on('error',()=>{});
+   try{const status=await new Promise<number>((resolve,reject)=>{bad.once('unexpected-response',(_req,res)=>{res.resume();resolve(res.statusCode??0);});bad.once('open',()=>reject(new Error('Forbidden origin was admitted')));});assert.equal(status,403);}finally{bad.terminate();}
+  }
+ }finally{good?.ws.terminate();await server.close();}
 });
 test('token buckets do not reset across boundary or reconnect, idle IP entries expire',()=>{
  const b=new Bucket(2,1,0);assert.ok(b.take(0));assert.ok(b.take(0));assert.ok(!b.take(999));assert.ok(b.take(1000));assert.ok(!b.take(1001));

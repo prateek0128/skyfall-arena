@@ -4,6 +4,14 @@ A React/TypeScript/Vite 3D jetpack game with Three.js, React Three Fiber and Rap
 
 Phase 4 adds security/configuration checks, probes, bounded shutdown, operational metrics, lifecycle regressions and a reproducible load harness. **Local verification is not a production launch certification.** See remaining launch blockers below and the retained reports under `reports/`.
 
+## Current dual-mode verification (2026-10-17)
+
+The supplied deployed frontend is `https://skyfall-arena-kappa.vercel.app/`. **Single-player launched and flew after a multiplayer configuration failure, but multiplayer is currently blocked in that deployed build.** Two real browser clients both displayed “Multiplayer is not configured. Set VITE_WS_URL when building the frontend.” The observed production JS passes an undefined endpoint before WebSocket construction. The repository only contains example WSS domains; the actual production Node endpoint and logs are unavailable. No endpoint was guessed and no production settings or deployment were changed.
+
+Local source now explicitly offers **Single Player** and **Multiplayer · Private Rooms** together and fixes the multiplayer timer's `1:60` boundary display. An isolated production frontend build and unchanged local authoritative server passed a two-real-browser flow: create/join, ready guard, shared countdown, flight/boost, combat and matching 140-point/1-elimination results, rematch, both refresh/resumes, host handoff, return to an unready lobby, and leave. After stopping that server, single-player still flew, destroyed a drone for 450 points and paused correctly. The full campaign was not manually completed in the browser; existing automated progression/victory tests pass.
+
+**47/47 tests, client/server typechecks and both production builds passed.** See [dual-mode verification](reports/dual-mode-verification.md) for raw console/server/build/test captures and exact read-only production diagnostic steps. Production server TLS/WSS, proxy upgrades, exact allowed origins, health/readiness, logs and reconnect remain unverified until the actual endpoint/access is available. HTTPS success for the frontend does not verify the server. Local success is not a production multiplayer pass. No release or publication was performed.
+
 ## Run locally
 
 Node.js 20.19+ or 22.12+ is required (verification uses Node 24). Use a desktop WebGL2 browser.
@@ -21,7 +29,7 @@ npm run dev
 
 Use Vite's printed URL. Default development origins are exactly `http://localhost:5173`, `http://127.0.0.1:5173`, `http://localhost:4173`, and `http://127.0.0.1:4173`. A different port or LAN address must be added explicitly to `ALLOWED_ORIGINS` in the server shell. Single-player does not open a WebSocket until multiplayer is requested and remains usable if the server is unavailable or misconfigured.
 
-Select **Private multiplayer** in the menu, create a room, and join its six-character code from another tab/window. Everyone readies up, the host starts a three-second countdown, then each pilot clicks **Take control**. Sessions use per-tab session storage; refresh requires reopening multiplayer and choosing **Reconnect saved session**.
+Select **Multiplayer · Private Rooms** in the menu, create a room, and join its six-character code from another tab/window. Everyone readies up, the host starts a three-second countdown, then each pilot clicks **Take control**. Sessions use per-tab session storage; refresh requires reopening multiplayer and choosing **Reconnect saved session**.
 
 ## Controls and game rules
 
@@ -60,6 +68,66 @@ VITE_WS_URL=wss://arena.example.com/socket npm run build
 NODE_ENV=production HOST=127.0.0.1 PORT=2567 \
   ALLOWED_ORIGINS=https://game.example.com npm run start:server
 ```
+
+## Render server preparation — manual deployment only
+
+No Render service has been created, and no production server hostname is known. The existing server already reads `HOST` and `PORT`; no networking, physics or security-code change is required. **Render ingress requires `HOST=0.0.0.0`**. Leaving this application's local default `127.0.0.1` would prevent ingress. The public service uses Render-managed TLS; Node continues to serve HTTP on its internal port. References: [Render Web Services](https://render.com/docs/web-services), [WebSockets](https://render.com/docs/websocket), [health checks](https://render.com/docs/health-checks), [Node versions](https://render.com/docs/node-version).
+
+When you choose to deploy, connect the actual Git repository containing the reviewed changes. The local absolute filesystem path cannot be entered as Render's repository source. The current branch is `main`, but uncommitted/local-only changes are not available to Render until you separately authorize and publish them. No commit/push is performed by this preparation.
+
+Enter these settings in **New → Web Service** (not Static Site, Private Service, or Background Worker):
+
+| Dashboard setting | Value |
+|---|---|
+| Repository / Branch | Your actual repository / the branch containing the reviewed version (`main` locally) |
+| Root Directory | Leave blank: repository root containing `package.json`, `server/`, and `shared/` |
+| Language / Runtime | Node |
+| Build Command | `npm ci --include=dev && npm run build:server` |
+| Start Command | `npm run start:server` |
+| Health Check Path | `/ready` |
+| Instance count | **1**, manual scaling; no autoscaling or multiple replicas |
+| Instance type | An always-on paid instance for persistent gameplay; target-host capacity still requires testing |
+| Auto-Deploy | Off while validating; deploy manually only when authorized |
+| Persistent disk / database | None required; neither restores this application's RAM state |
+| Region / service name | Choose for your players/account; the name does not confirm an available public hostname |
+
+`npm ci --include=dev` deliberately includes TypeScript and Node types even with `NODE_ENV=production`. `npm run build:server` compiles the shared/server TypeScript to `dist-server/`, including the verified entrypoint `dist-server/server/index.js`; `npm run start:server` executes that file. No `tsx`, Vite dev server, watch mode, backgrounding (`&`), frontend build or custom start wrapper is required for the Render server. Do not change Root Directory to `server/`, because compilation/imports also require `shared/` and the root configuration/lockfile.
+
+Copy these **non-secret server settings** from [.env.render.example](.env.render.example) into Render's environment settings:
+
+```text
+NODE_VERSION=24.18.0
+NODE_ENV=production
+HOST=0.0.0.0
+ALLOWED_ORIGINS=https://skyfall-arena-kappa.vercel.app
+ALLOW_ORIGINLESS=false
+```
+
+Render supplies `PORT=10000` by default; leave that managed default in place. The example also records `PORT=10000` for reproducibility. If you intentionally configure another supported port, the application uses it. **Do not append `:10000` to the public browser URL.** `NODE_VERSION` pins the Node version used for local verification; the dashboard environment pin takes precedence over Render defaults. The application entrypoint does not automatically load either `.env.render.example` or Vite's `.env.local`; enter server variables in Render. Do not put `VITE_WS_URL` or credentials into this server profile. No Supabase/service-role/API secrets are required.
+
+Keep `ALLOWED_ORIGINS` exactly as shown: one HTTPS origin with **no trailing slash**, wildcard, preview hostname or extra localhost origin. Leave all existing per-socket/IP budgets, schema validation, command sequencing, rotating guest resume credentials and authoritative simulation intact. A new regression loads this exact profile and verifies wildcard binding, probes, root-path WebSocket admission for the frontend origin, and rejection of missing, HTTP and lookalike origins.
+
+### Ingress, probes and state guarantees
+
+- HTTP probes and WebSocket upgrades share the same listener and internal `PORT`. Render handles public TLS and Upgrade forwarding; no application TLS certificates or extra WebSocket port are needed. Use **WSS** publicly. `/ready` returns 200 only when the server is ready, and 503 during failure/drain/stalled scheduling. `/health` remains the separate liveness diagnostic. Rapier initializes before the listener starts. An ordinary HTTP request to `/` returns 404; that is expected and is why the health path must not be `/`.
+- The current WebSocket server has no path restriction. Its root URL `/` is locally verified and needs no invented `/socket` or `/ws` suffix. For the ordinary direct Render Web Service setup described here, use the assigned public hostname with the **root path**. If you later introduce a custom proxy/path, verify that routing explicitly before changing the client endpoint.
+- Rooms, match results, guest identities and reconnect tokens live in one Node process. A disconnect may resume that same process within 20 seconds; a restart, redeploy, crash, instance replacement or idle shutdown loses all rooms/tokens. A disk cannot restore them. Render may interrupt connections for maintenance, even on a paid instance. Multiple replicas can route new joins/resumes to a different room map and are unsupported. A rolling deploy can briefly overlap old/new processes; do not promise room continuity or admit new matches during planned maintenance.
+- Free instances spin down after 15 minutes without inbound traffic and may take about a minute to wake. They are useful for experiments, not a promise of persistent availability. An always-on instance avoids idle spin-down, **not** restarts or maintenance. See [Render Free limitations](https://render.com/docs/free).
+- SIGTERM invokes the existing drain/1012 restart notice and bounded five-second shutdown. Keep platform shutdown grace longer than this; Render documents a default 30-second window. Do not add a second Node worker/process manager cluster. Collect JSON operational logs, including `server_started`, `upgrade_rejected`, `command_rejected`, `server_metrics`, `server_draining` and `server_stopped`; the upstream Rapier warning remains on stderr.
+- **Proxy/IP admission remains an operational check:** the server intentionally uses the TCP peer and does not trust `X-Forwarded-For`. Render proxy traffic can share app-level IP budgets. Verify the actual peer/admission behavior and trusted edge protections on Render; do not bypass or increase limits to hide rejections. The local single-room/two-browser pass does not establish Render capacity.
+
+### After a separately authorized Render deployment: Vercel and two-client verification
+
+1. Wait for `/ready` to pass and the Render logs to show `server_started`. Copy the **actual assigned HTTPS service URL** from the dashboard. No such URL exists in this repository yet; never derive it from a suggested service name or use the example domains.
+2. Check both `/health` and `/ready` on that real HTTPS origin with normal certificate verification. Expect 200 and readiness true. Do not use `curl -k`, a private Render hostname, localhost or the internal port in the public client.
+3. Form `VITE_WS_URL` by changing that confirmed service URL's scheme from `https://` to `wss://` and using `/` as its path for this direct setup. There is no required `/socket` suffix. This is a derivation rule, **not a claimed deployed endpoint**.
+4. In the existing Vercel frontend project, open **Environment Variables**, add `VITE_WS_URL` for **Production**, and set it to the confirmed WSS root URL. Only this public URL belongs in the frontend. A new Vercel production build/deployment must be separately authorized: environment changes do not update old bundles. Confirm the active frontend is no longer using an undefined endpoint. Preview environments are not allowed by the server profile and require a deliberate origin policy if later needed; do not enable wildcard origins.
+5. Open `https://skyfall-arena-kappa.vercel.app/` in two independent browser tabs/windows. Preserve Console and Network logs. Create a room in one, join the actual code in the other, and verify a WebSocket **101 Switching Protocols** to the confirmed WSS URL with exactly that frontend Origin. Verify both rosters, ready/unready, host launch guard, countdown, flight/boost, hits/elimination, matching results, rematch and return to lobby.
+6. Refresh one pilot and choose saved-session reconnect inside 20 seconds. Exercise host handoff and a temporary network interruption; correlate server/proxy logs. Test expired reconnect and an actual server restart: old rooms must end rather than falsely resume. Confirm single-player works with the server unavailable. Record failures rather than declaring production success.
+
+Local preparation verification (2026-10-17, Node 24.18.0 on macOS): both clean installs (`npm ci --include=dev`, including `NODE_ENV=production`) passed in an isolated temporary source copy, with 102 packages installed and zero audit vulnerabilities reported. The fresh `npm run build:server` generated the expected entrypoint; the exact `npm run start:server` command passed probes, root WebSocket room creation and graceful SIGTERM checks on `0.0.0.0:10000`. The 30 relevant server/protocol tests and full **49/49 tests** passed; client/server TypeScript checks and both production builds passed. See [Render preparation evidence](reports/render-preparation.md), [raw verification output](reports/render-preparation.log) and [startup smoke result](reports/render-start-smoke.json). This is local evidence, not a Render/Linux or public-TLS certification. Existing Rapier/bundle warnings remain. npm also reported install-script policy warnings for esbuild/fsevents in the isolated install; the server build/start succeeded without changing that policy.
+
+Remaining blockers: the reviewed source must become available to Render, a service must actually be provisioned/deployed, its hostname/TLS/Upgrade/probes/origins and proxy admission must be verified, and two real production clients plus target-host soak/load testing must pass. The local preparation and tests do not establish production readiness. Vercel's active frontend remains unchanged and blocked until a confirmed endpoint is baked into a new build. No service, hostname, route rewrite, disk, database or deployment was created here.
 
 ## Deployment requirements — not performed here
 

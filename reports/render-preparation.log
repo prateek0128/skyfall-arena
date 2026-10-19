@@ -1,0 +1,203 @@
+Clean install (ordinary environment)
+
+added 102 packages, and audited 103 packages in 5s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn allow-scripts 2 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+
+
+Clean install with NODE_ENV=production
+
+added 102 packages, and audited 103 packages in 8s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn allow-scripts 2 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+
+
+Clean server-only production build
+
+> skyfall-arena@0.1.0 build:server
+> tsc -p tsconfig.server.json
+
+
+
+Exact npm start command smoke / graceful shutdown
+
+> skyfall-arena@0.1.0 start:server
+> node dist-server/server/index.js
+
+{"time":"2026-10-17T15:10:18.022Z","event":"server_started","port":10000,"protocol":1,"originCount":1,"originless":false}
+{"time":"2026-10-17T15:10:18.133Z","event":"connection_open","connectionId":"baa5671e-5073-4bdc-ab3c-8625d2443a55","connections":1}
+{"time":"2026-10-17T15:10:18.177Z","event":"connection_close","connectionId":"baa5671e-5073-4bdc-ab3c-8625d2443a55","code":1000,"connections":0}
+{"time":"2026-10-17T15:10:18.178Z","event":"server_draining","rooms":0,"connections":0}
+{"time":"2026-10-17T15:10:18.180Z","event":"server_stopped"}
+
+STDERR:
+using deprecated parameters for the initialization function; pass a single object instead
+
+
+Relevant server and protocol tests
+using deprecated parameters for the initialization function; pass a single object instead
+✔ production config fails closed and origins are exact, canonical HTTPS origins (4.868822ms)
+✔ Render profile binds publicly on its ingress port without changing local defaults or security budgets (0.626742ms)
+✔ Render profile serves probes and root WebSocket upgrades on wildcard bind; rejects missing and lookalike origins (147.136669ms)
+✔ token buckets do not reset across boundary or reconnect, idle IP entries expire (0.747385ms)
+✔ health/readiness, graceful restart notification, refusal of upgrades and idempotent shutdown (530.403383ms)
+✔ heartbeat failure and unjoined session timeout remove stale clients (103.137063ms)
+✔ default origin policy rejects hostile origins and configured policy rejects missing origins (6.52205ms)
+✔ malformed JSON, binary messages, wrong versions, oversized payloads and forged authority close sockets (29.604448ms)
+✔ per-IP connection admission and room guessing budgets persist across sockets (40.911717ms)
+✔ unauthorized and duplicate room commands cannot bypass host, readiness or match guards (75.318072ms)
+✔ abrupt disconnect expiry invalidates tokens and frees an abandoned active room (176.449099ms)
+✔ room expiry uses monotonic housekeeping time even if simulation catch-up is bounded (1.33903ms)
+✔ simulation failure flips health and readiness and produces an operational error log (78.149773ms)
+✔ server restart does not resurrect an old room or reconnect credential (17.799566ms)
+✔ inactive connected lobbies expire with a fatal notice and release room resources (1.139026ms)
+✔ startup bind failure releases its scheduler and can be retried on another port (2.693772ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ real WebSocket clients join, move, fight, resume with token rotation, finish and rematch (1710.238338ms)
+✔ server rejects forged authority and rate floods without affecting another room (38.155714ms)
+✔ eight real clients respect capacity, transfer host on disconnect, and share timeout results (830.254883ms)
+✔ configured origin allowlist rejects unexpected browser origins (7.691956ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ room requires host, two connected ready pilots and enforces capacity (20.030577ms)
+✔ disconnect migrates host, cancels countdown, rotates reconnect token and cleans empty room (5.755925ms)
+✔ rematch, lobby transition, replay input and explicit leave use server state (32.9458ms)
+✔ replacement session revokes the prior live socket and rejects stale commands (1.900336ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ bounds, cooldown and damage are constrained by server rules (3.073925ms)
+✔ server simulates normalized flight, solid landing, stale input braking and fall recovery (82.493581ms)
+✔ server raycast scores hits and eliminations at fire cooldown; cover blocks damage (17.668884ms)
+✔ protocol requires exact versioned intent schema (7.32829ms)
+✔ inputs reject forged positions, excessive axes, NaN, infinity and invalid sequence (2.45923ms)
+✔ frontend endpoint config preserves local preview and single-player-safe errors (1.51765ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3198.058968
+
+
+Client and server TypeScript checks
+
+> skyfall-arena@0.1.0 typecheck
+> tsc -b && tsc -p tsconfig.server.json --noEmit
+
+
+
+Complete regression suite
+
+> skyfall-arena@0.1.0 test
+> node --import tsx --test src/game/logic.test.ts shared/protocol.test.ts server/simulation.test.ts server/rooms.test.ts server/integration.test.ts server/hardening.test.ts scripts/load-scenario.test.mjs src/components/MainMenuActions.test.tsx src/multiplayer/clock.test.ts
+
+using deprecated parameters for the initialization function; pass a single object instead
+✔ harness aim predicts a hit, resolved only by unchanged authoritative simulation (165.217671ms)
+✔ fixed upward aim can hit a pilot behind the shooter through camera targeting (11.672652ms)
+✔ skirmish driver stops targeting a half-health buddy; never mutates health (0.993797ms)
+✔ activity requires continuous movement/fire, every pilot alive and every full window present (0.858428ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ production config fails closed and origins are exact, canonical HTTPS origins (58.292578ms)
+✔ Render profile binds publicly on its ingress port without changing local defaults or security budgets (0.89324ms)
+✔ Render profile serves probes and root WebSocket upgrades on wildcard bind; rejects missing and lookalike origins (513.71642ms)
+✔ token buckets do not reset across boundary or reconnect, idle IP entries expire (0.873053ms)
+✔ health/readiness, graceful restart notification, refusal of upgrades and idempotent shutdown (539.237478ms)
+✔ heartbeat failure and unjoined session timeout remove stale clients (102.205972ms)
+✔ default origin policy rejects hostile origins and configured policy rejects missing origins (9.889383ms)
+✔ malformed JSON, binary messages, wrong versions, oversized payloads and forged authority close sockets (38.44134ms)
+✔ per-IP connection admission and room guessing budgets persist across sockets (19.500239ms)
+✔ unauthorized and duplicate room commands cannot bypass host, readiness or match guards (50.328875ms)
+✔ abrupt disconnect expiry invalidates tokens and frees an abandoned active room (147.566729ms)
+✔ room expiry uses monotonic housekeeping time even if simulation catch-up is bounded (1.911983ms)
+✔ simulation failure flips health and readiness and produces an operational error log (46.663697ms)
+✔ server restart does not resurrect an old room or reconnect credential (20.799465ms)
+✔ inactive connected lobbies expire with a fatal notice and release room resources (1.617852ms)
+✔ startup bind failure releases its scheduler and can be retried on another port (5.213876ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ real WebSocket clients join, move, fight, resume with token rotation, finish and rematch (1967.789308ms)
+✔ server rejects forged authority and rate floods without affecting another room (47.860438ms)
+✔ eight real clients respect capacity, transfer host on disconnect, and share timeout results (812.45324ms)
+✔ configured origin allowlist rejects unexpected browser origins (18.437012ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ room requires host, two connected ready pilots and enforces capacity (73.762492ms)
+✔ disconnect migrates host, cancels countdown, rotates reconnect token and cleans empty room (68.088803ms)
+✔ rematch, lobby transition, replay input and explicit leave use server state (85.809179ms)
+✔ replacement session revokes the prior live socket and rejects stale commands (11.306959ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ bounds, cooldown and damage are constrained by server rules (58.734847ms)
+✔ server simulates normalized flight, solid landing, stale input braking and fall recovery (210.911766ms)
+✔ server raycast scores hits and eliminations at fire cooldown; cover blocks damage (91.922041ms)
+✔ protocol requires exact versioned intent schema (4.89125ms)
+✔ inputs reject forged positions, excessive axes, NaN, infinity and invalid sequence (1.399352ms)
+✔ frontend endpoint config preserves local preview and single-player-safe errors (2.080827ms)
+✔ main menu offers both modes without starting a session during render (46.836211ms)
+✔ arena loading disables solo launch while keeping the multiplayer menu accessible (46.220564ms)
+✔ fuel drains, boost costs more, regeneration is bounded (2.527407ms)
+✔ diagonal input never increases speed and follows camera yaw (0.790187ms)
+✔ four falls exhaust health without negative values (0.729501ms)
+✔ flight caps ascent and released thrust preserves gravity velocity (2.461768ms)
+✔ accuracy handles no shots, misses and hits (1.197442ms)
+✔ kills chain within five seconds, cap at 5x, expire and reject duplicates (0.601487ms)
+✔ seven kills advance wave, restore bounded hull and reset wave timer (2.270759ms)
+✔ pause freezes timer, damage, shots and progression; resume preserves match (0.604536ms)
+✔ timeout and hull loss end the match, terminal states cannot resume or score (0.506045ms)
+✔ horizontal smoothing is consistent across frame rates, thrust settles predictably (1.129272ms)
+✔ restart resets telemetry and stats while preserving readiness and audio preference (0.576423ms)
+✔ match, fuel and controls use the same Rapier delta at low frame rates (0.460784ms)
+✔ fractional multiplayer countdown never renders sixty seconds (2.283503ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4531.317587
+
+
+Client and server production builds
+
+> skyfall-arena@0.1.0 build
+> npm run build:client && npm run build:server
+
+
+> skyfall-arena@0.1.0 build:client
+> tsc -b && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 357 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.74 kB │ gzip:   0.40 kB
+dist/assets/index-DnB2Ssta.css              12.19 kB │ gzip:   3.57 kB
+dist/assets/World-D5ETrM0u.js              221.02 kB │ gzip:  70.33 kB
+dist/assets/index-DG5qP49Q.js              248.41 kB │ gzip:  78.13 kB
+dist/assets/three-runtime-CAV4-VF5.js      703.77 kB │ gzip: 181.23 kB
+dist/assets/physics-runtime-DW2HfIcf.js  2,237.13 kB │ gzip: 830.29 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.02s
+
+> skyfall-arena@0.1.0 build:server
+> tsc -p tsconfig.server.json
+

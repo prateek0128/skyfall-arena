@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-10-17T15:10:18.197Z",
+  "node": "v24.18.0",
+  "profile": {
+    "host": "0.0.0.0",
+    "port": 10000,
+    "production": "production",
+    "allowedOrigins": "https://skyfall-arena-kappa.vercel.app",
+    "originless": "false"
+  },
+  "entrypoint": "dist-server/server/index.js",
+  "command": "npm run start:server",
+  "freshInstallDirectory": "/var/folders/rn/2xm39gjs4b35nq6br2q_f5zh0000gn/T/skyfall-render-install-dUd64U",
+  "probes": {
+    "/health": {
+      "status": 200,
+      "payload": {
+        "ok": true,
+        "ready": true,
+        "draining": false,
+        "protocol": 1
+      }
+    },
+    "/ready": {
+      "status": 200,
+      "payload": {
+        "ok": true,
+        "ready": true,
+        "draining": false,
+        "protocol": 1
+      }
+    }
+  },
+  "rootWebSocketRoomCreation": true,
+  "gracefulSigterm": true,
+  "roomsAndConnectionsAtDrain": 0,
+  "passed": true,
+  "scope": "Local clean-install compiled-server smoke, not Render-hosted or public TLS verification"
+}

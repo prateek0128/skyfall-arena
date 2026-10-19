@@ -1,0 +1,132 @@
+{
+  "recordedAt": "2026-10-17T14:40:56.356445+00:00",
+  "method": "Manual real-browser UI/AX observations and console capture via Codex browser tools; two independent tabs per environment. These are observed outcomes, not synthetic protocol clients.",
+  "production": {
+    "frontend": "https://skyfall-arena-kappa.vercel.app/",
+    "javascriptAsset": "https://skyfall-arena-kappa.vercel.app/assets/index-KM0p1WWa.js",
+    "javascriptSha256": "19ed4f2d308758a8ca08ca5687a251d479530c36e9a9fb236b4a4b2bec6c92af",
+    "frontendHttpStatus": 200,
+    "curlTlsVerifyResult": 0,
+    "websocketCallsite": "const v=a1(void 0,location,!0);M=new WebSocket(v)",
+    "websocketEndpoint": null,
+    "websocketHandshake": "Not attempted: endpoint guard throws before WebSocket construction. No production handshake rejection was observed.",
+    "clients": [
+      {
+        "name": "Audit Alpha",
+        "createRoom": "blocked",
+        "uiError": "Multiplayer is not configured. Set VITE_WS_URL when building the frontend. Single-player is available.",
+        "consoleErrors": [],
+        "consoleWarnings": [
+          {
+            "message": "using deprecated parameters for the initialization function; pass a single object instead",
+            "timestamp": "2026-10-17T14:34:55.650Z"
+          }
+        ]
+      },
+      {
+        "name": "Audit Bravo",
+        "createRoom": "blocked",
+        "uiError": "Multiplayer is not configured. Set VITE_WS_URL when building the frontend. Single-player is available.",
+        "consoleErrors": [],
+        "consoleWarnings": []
+      }
+    ],
+    "singlePlayerSmoke": {
+      "afterMultiplayerFailure": true,
+      "wave": 1,
+      "jetpackFuelPercentObserved": 81,
+      "altitudeMetersObserved": 6,
+      "escapePause": "passed",
+      "fullCampaignCompletedInBrowser": false
+    },
+    "serverLogs": "Unavailable; production Node host/endpoint and log access are not present in the repository or provided environment.",
+    "serverTlsProxyOriginHealthReadinessReconnect": "Blocked: actual production server endpoint unknown."
+  },
+  "local": {
+    "frontend": "http://127.0.0.1:4180/",
+    "endpoint": "ws://127.0.0.1:2568",
+    "profile": "Isolated production client build with explicit local VITE_WS_URL; unchanged compiled authoritative server with exact local allowlist. This is not deployed-game multiplayer verification.",
+    "room": "QZMCKS",
+    "players": [
+      "Audit Alpha",
+      "Audit Bravo"
+    ],
+    "createJoinReadyCountdown": "passed; host start disabled until both ready; both observed countdown 3",
+    "refreshReconnect": "Both pilots independently refreshed and resumed their existing identities within 20 seconds.",
+    "hostHandoff": "Alpha refresh transferred host to Bravo; Alpha reconnect did not reclaim host.",
+    "matches": [
+      {
+        "outcome": "Alpha last pilot standing",
+        "alphaScore": 140,
+        "alphaEliminations": 1,
+        "bravoEliminated": true,
+        "bothScoreboardsAgreed": true
+      },
+      {
+        "outcome": "Alpha last pilot standing after rematch and host transfer",
+        "alphaScore": 140,
+        "alphaEliminations": 1,
+        "bravoEliminated": true,
+        "bothScoreboardsAgreed": true
+      }
+    ],
+    "rematch": "passed; scores reset to zero and both pilots alive",
+    "remoteFlight": "Bravo thrust/boost rendered remotely in Alpha canvas; boosted fuel observed 66%, later unboosted thrust 86%.",
+    "returnToLobby": "Bravo host returned both clients to lobby, both NOT READY, host START MATCH disabled",
+    "healthReadiness": {
+      "health": 200,
+      "ready": 200,
+      "payload": {
+        "ok": true,
+        "ready": true,
+        "draining": false,
+        "protocol": 1
+      }
+    },
+    "consoleErrors": [],
+    "consoleWarnings": [
+      {
+        "client": "Alpha",
+        "message": "using deprecated parameters for the initialization function; pass a single object instead",
+        "timestamps": [
+          "2026-10-17T14:36:48.847Z",
+          "2026-10-17T14:39:04.723Z"
+        ]
+      },
+      {
+        "client": "Bravo",
+        "message": "using deprecated parameters for the initialization function; pass a single object instead",
+        "timestamps": [
+          "2026-10-17T14:37:06.152Z",
+          "2026-10-17T14:37:50.199Z"
+        ]
+      }
+    ],
+    "serverStoppedSoloSmoke": {
+      "isolatedServerStoppedBeforeLaunch": true,
+      "jetpackFuelPercentObserved": 79,
+      "altitudeMetersObserved": 8,
+      "dronesDestroyed": 1,
+      "score": 450,
+      "pauseRemaining": "1:12",
+      "pauseRemainingUnchangedOnLaterObservation": true
+    },
+    "liveBrowserAutomaticRetryAfterNetworkFault": "Not exercised; refresh/manual resume was exercised. Retry logic inspected; server-side disconnect/token regressions passed.",
+    "fullSoloCampaignPlayedToVictoryInBrowser": false
+  },
+  "checks": {
+    "npmTest": {
+      "tests": 47,
+      "passed": 47,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 6565.424422
+    },
+    "typecheck": "client and server passed",
+    "productionBuild": "client and server passed; existing large engine warnings retained"
+  },
+  "productionConfigurationModified": false,
+  "deployed": false,
+  "committed": false
+}

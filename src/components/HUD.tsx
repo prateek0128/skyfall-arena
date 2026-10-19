@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { MainMenuActions } from './MainMenuActions';
 import { game,useGame } from '../game/store';
 import { accuracy,DRONES_PER_WAVE,WAVE_COUNT } from '../game/match';
 import { unlockAudio } from '../game/audio';
 const formatTime=(seconds:number)=>`${Math.floor(seconds/60)}:${String(Math.floor(seconds%60)).padStart(2,'0')}`;
-export function HUD(){
+export function HUD({onMultiplayer}:{onMultiplayer:()=>void}){
  const s=useGame();const [fallback,setFallback]=useState(false);
  const paused=s.phase==='paused',over=s.phase==='over',victory=s.outcome==='victory';
  async function play(restart=false){
@@ -35,7 +36,7 @@ export function HUD(){
    <h1>{over?victory?<>SKY<br/><em>SECURED.</em></>:<>BACK TO<br/><em>THE SKY.</em></>:paused?<>HOLD YOUR<br/><em>ALTITUDE.</em></>:<>OWN THE<br/><em>OPEN SKY.</em></>}</h1>
    <p>{over?s.reason:paused?'Your match is paused. Time, drones, and fuel will resume together.':'Clear three waves of seven drones before each timer expires. Dodge incoming fire, manage fuel, and chain kills within 5 seconds for up to 5× points.'}</p>
    {over?<div className="results" aria-label="Match results"><div><span>SCORE</span><b>{s.score.toLocaleString()}</b></div><div><span>DRONES DESTROYED</span><b>{s.destroyed} / 21</b></div><div><span>SURVIVAL TIME</span><b>{formatTime(s.elapsed)}</b></div><div><span>ACCURACY</span><b>{s.shots?`${accuracy(s.shots,s.hits)}%`:'—'}</b></div><small>{s.hits} HITS / {s.shots} SHOTS · WAVE {s.wave} / {WAVE_COUNT}</small></div>:<div className="mission"><span>0{s.wave}</span><div><b>{paused?'RETURN TO THE FIGHT':'CLEAR. EVADE. ASCEND.'}</b><small>{paused?`${formatTime(s.remaining)} left · ${DRONES_PER_WAVE-s.cleared.length} drones remaining`:'80 seconds per wave · +15 hull between waves'}</small></div></div>}
-   <button className="launch" disabled={!s.loaded} onClick={()=>void play(!paused)}>{!s.loaded?'LOADING ARENA…':paused?'RESUME FLIGHT':over?'PLAY AGAIN':'ENTER THE ARENA'}<span>↗</span></button>
+   {s.phase==='ready'?<MainMenuActions loaded={s.loaded} onSinglePlayer={()=>void play(true)} onMultiplayer={onMultiplayer}/>:<button className="launch" disabled={!s.loaded} onClick={()=>void play(!paused)}>{!s.loaded?'LOADING ARENA…':paused?'RESUME FLIGHT':over?'PLAY AGAIN':'SINGLE PLAYER'}<span>↗</span></button>}
    {paused&&<button className="restart" onClick={()=>void play(true)}>RESTART MATCH</button>}
    <div className="menu-note">MOUSE TO LOOK <span>•</span> ESC TO PAUSE <span>•</span> DESKTOP + KEYBOARD</div>
   </section><div className="side-label">SKYFALL SURVIVAL PROGRAM <span>///</span> EST. 2086</div></div>}

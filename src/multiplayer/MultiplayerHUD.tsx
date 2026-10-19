@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { network,useNetwork } from './network';
 import { game,useGame } from '../game/store';
 import { unlockAudio } from '../game/audio';
-const time=(value:number)=>`${Math.floor(value/60)}:${String(Math.ceil(value%60)).padStart(2,'0')}`;
+import {formatMatchTime} from './clock';
 export function MultiplayerHUD({onSolo}:{onSolo:()=>void}){
  const net=useNetwork(),audio=useGame(),[name,setName]=useState('Pilot'),[code,setCode]=useState('');
  const room=net.room,me=room?.players.find(p=>p.id===net.playerId),host=room?.hostId===net.playerId;
@@ -12,7 +12,7 @@ export function MultiplayerHUD({onSolo}:{onSolo:()=>void}){
  return <div className={`interface multiplayer ${performance.now()-net.hurtAt<250?'damaged':''}`}>
   <header><div className="brand"><span className="brand-symbol">◈</span> SKYFALL<span className="brand-sub">ARENA</span></div><div className="session"><i/> PRIVATE ARENA <span>/</span> {room?.code??'MULTIPLAYER'}</div><div className="header-actions"><button className="quiet" onClick={()=>game.set({muted:!audio.muted})}>{audio.muted?'SOUND OFF':'SOUND ON'}</button><button className="quiet" onClick={()=>{network.set({menu:true});document.exitPointerLock();}}>MENU</button></div></header>
   {playing&&<>
-   <div className="wave-panel"><span>LAST PILOT STANDING</span><strong>{time(room.remaining)}</strong><small>{room.players.filter(p=>p.alive).length} / {room.players.length} PILOTS ALIVE · ROOM {room.code}</small></div>
+   <div className="wave-panel"><span>LAST PILOT STANDING</span><strong>{formatMatchTime(room.remaining)}</strong><small>{room.players.filter(p=>p.alive).length} / {room.players.length} PILOTS ALIVE · ROOM {room.code}</small></div>
    <div className="score"><span className="eyebrow">YOUR SCORE</span><strong>{me?.score??0}</strong><span>{me?.eliminations??0} ELIMINATIONS</span></div>
    {!net.menu&&me?.alive&&<div className={`crosshair ${performance.now()-net.hitAt<180?'hit':''}`}><i/><i/><i/><i/><b/></div>}
    <div className="flight-hint">{net.status!=='connected'?'CONNECTION LOST · RECONNECTING':!me?.alive?'ELIMINATED · WATCH THE MATCH':'WASD MOVE · SPACE THRUST · SHIFT BOOST · LMB FIRE · ESC MENU · RMB DRAG LOOK'}</div>
