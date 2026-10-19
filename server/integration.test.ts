@@ -17,7 +17,9 @@ test('real WebSocket clients join, move, fight, resume with token rotation, fini
   const a=await client(server.port),b=await client(server.port);sockets.push(a.socket,b.socket);
   a.send({v:1,type:'create',name:'Alpha'});const wa=await a.wait(m=>m.type==='welcome');assert.equal(wa.type,'welcome');if(wa.type!=='welcome')throw new Error();
   b.send({v:1,type:'join',code:wa.room.code,name:'Bravo'});const wb=await b.wait(m=>m.type==='welcome');if(wb.type!=='welcome')throw new Error();
-  await a.wait(m=>m.type==='state'&&m.room.players.length===2);
+  const assertNames=(room:RoomSnapshot)=>assert.deepEqual(room.players.map(p=>({id:p.id,name:p.name})),[{id:wa.playerId,name:'Alpha'},{id:wb.playerId,name:'Bravo'}]);
+  assert.equal(wa.room.players[0].name,'Alpha');assertNames(wb.room);
+  const joined=await a.wait(m=>m.type==='state'&&m.room.players.length===2);if(joined.type!=='state')throw new Error();assertNames(joined.room);
   a.send({v:1,type:'ready',ready:true});b.send({v:1,type:'ready',ready:true});await a.wait(m=>m.type==='state'&&m.room.players.every(p=>p.ready));
   a.send({v:1,type:'start'});await Promise.all([a.wait(state('playing')),b.wait(state('playing'))]);
   let seq=0;const movement=setInterval(()=>a.send({v:1,type:'input',input:{...idleInput(),seq:++seq,x:1}}),40);
@@ -26,12 +28,15 @@ test('real WebSocket clients join, move, fight, resume with token rotation, fini
   b.socket.close();await a.wait(m=>m.type==='state'&&m.room.players.some(p=>p.id===wb.playerId&&!p.connected));
   const resumed=await client(server.port);sockets.push(resumed.socket);resumed.send({v:1,type:'resume',code:wa.room.code,playerId:wb.playerId,token:wb.token});
   const wr=await resumed.wait(m=>m.type==='welcome');assert.equal(wr.type,'welcome');if(wr.type!=='welcome')throw new Error();assert.equal(wr.playerId,wb.playerId);assert.notEqual(wr.token,wb.token);
+  assertNames(wr.room);
   const fire=setInterval(()=>a.send({v:1,type:'input',input:{...idleInput(),seq:++seq,yaw:-Math.PI/2,pitch:-.12,fire:true}}),40);
   timers.push(fire);
   const result=await a.wait(state('results'));clearInterval(fire);if(result.type!=='state')throw new Error();
   assert.equal(result.room.players.find(p=>p.id===wb.playerId)!.health,0);assert.equal(result.room.players.find(p=>p.id===wa.playerId)!.eliminations,1);assert.deepEqual(result.room.winners,[wa.playerId]);
+  assertNames(result.room);
   const otherResult=await resumed.wait(state('results'));if(otherResult.type==='state')assert.deepEqual(otherResult.room,result.room);
-  a.send({v:1,type:'start'});await a.wait(m=>m.type==='state'&&m.room.matchId===2&&m.room.phase==='countdown');
+  a.send({v:1,type:'start'});
+  for(const c of [a,resumed]){const rematch=await c.wait(m=>m.type==='state'&&m.room.matchId===2&&m.room.phase==='countdown');if(rematch.type!=='state')throw new Error();assertNames(rematch.room);}
   await a.wait(m=>m.type==='state'&&m.room.matchId===2&&m.room.phase==='playing');
   resumed.socket.close();await a.wait(m=>m.type==='state'&&m.room.matchId===2&&m.room.phase==='results');
   a.send({v:1,type:'lobby'});await a.wait(m=>m.type==='state'&&m.room.matchId===2&&m.room.phase==='lobby');

@@ -4,8 +4,12 @@ import { network,useNetwork } from './network';
 import { game,useGame } from '../game/store';
 import { unlockAudio } from '../game/audio';
 import {formatMatchTime} from './clock';
+export const INITIAL_PLAYER_NAME='';
+export function PlayerNameField({name=INITIAL_PLAYER_NAME,onChange}:{name?:string;onChange:(name:string)=>void}){
+ return <label>PILOT NAME<input value={name} placeholder="Enter your name" maxLength={18} onChange={e=>onChange(e.target.value)} autoComplete="nickname"/></label>;
+}
 export function MultiplayerHUD({onSolo}:{onSolo:()=>void}){
- const net=useNetwork(),audio=useGame(),[name,setName]=useState('Pilot'),[code,setCode]=useState('');
+ const net=useNetwork(),audio=useGame(),[name,setName]=useState(INITIAL_PLAYER_NAME),[code,setCode]=useState('');
  const room=net.room,me=room?.players.find(p=>p.id===net.playerId),host=room?.hostId===net.playerId;
  const busy=net.status==='connecting'||net.status==='reconnecting',playing=room?.phase==='playing';
  const capture=async()=>{unlockAudio();try{await document.querySelector('canvas')?.requestPointerLock();}catch{/* Drag fallback is always supported. */}network.set({menu:false});};
@@ -24,7 +28,7 @@ export function MultiplayerHUD({onSolo}:{onSolo:()=>void}){
    <h1>{!room?<>FLY<br/><em>TOGETHER.</em></>:room.phase==='countdown'?<>LAUNCH IN<br/><em>{Math.ceil(room.remaining)}</em></>:room.phase==='results'?<>{room.winners.includes(net.playerId)?'VICTORY.':'MATCH OVER.'}</>:room.phase==='playing'?<>FLIGHT<br/><em>MENU.</em></>:<>READY<br/><em>YOUR SQUAD.</em></>}</h1>
    {!room?<>
     <p>Private free-for-all. The server runs flight, fuel, hits, and scoring. Single-player works independently.</p>
-    <label>PILOT NAME<input value={name} maxLength={18} onChange={e=>setName(e.target.value)} autoComplete="nickname"/></label>
+    <PlayerNameField name={name} onChange={setName}/>
     <button className="launch" disabled={busy||!name.trim()||!net.loaded} onClick={()=>{unlockAudio();network.connect('create',name.trim());}}>CREATE ROOM <span>↗</span></button>
     <div className="join-row"><input aria-label="Room code" placeholder="ROOM CODE" value={code} maxLength={6} onChange={e=>setCode(e.target.value.toUpperCase())}/><button className="quiet" disabled={busy||code.length!==6||!name.trim()} onClick={()=>network.connect('join',name.trim(),code)}>JOIN ROOM</button></div>
     <button className="restart" onClick={()=>network.reconnect()}>RECONNECT SAVED SESSION</button>

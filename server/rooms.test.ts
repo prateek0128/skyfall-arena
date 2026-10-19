@@ -21,6 +21,9 @@ test('disconnect migrates host, cancels countdown, rotates reconnect token and c
   const code=a.p.room!;for(const p of [a.p,b.p])service.command(p,{v:1,type:'ready',ready:true});service.command(a.p,{v:1,type:'start'});
   service.detach(a.p);assert.equal(service.rooms.get(code)!.hostId,b.p.playerId);assert.equal(service.rooms.get(code)!.phase,'lobby');
   const replacement=peer('replacement');service.command(replacement.p,{v:1,type:'resume',code,playerId:welcome.playerId,token:welcome.token});assert.equal(replacement.p.playerId,welcome.playerId);
+  const resumed=replacement.messages.find(m=>m.type==='welcome');if(resumed?.type!=='welcome')throw new Error();
+  assert.deepEqual(resumed.room.players.map(p=>p.name),['A','B']);
+  assert.deepEqual(service.snapshot(service.rooms.get(code)!).players.map(p=>p.name),['A','B']);
   const stolen=peer('old');service.command(stolen.p,{v:1,type:'resume',code,playerId:welcome.playerId,token:welcome.token});assert.equal(stolen.p.room,undefined);
   service.detach(replacement.p);service.detach(b.p);service.tick(.2);assert.equal(service.rooms.size,0);
  }finally{service.dispose();}

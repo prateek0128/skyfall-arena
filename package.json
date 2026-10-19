@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "npm run build:client && npm run build:server",
     "typecheck": "tsc -b && tsc -p tsconfig.server.json --noEmit",
-    "test": "node --import tsx --test src/game/logic.test.ts shared/protocol.test.ts server/simulation.test.ts server/rooms.test.ts server/integration.test.ts server/hardening.test.ts scripts/load-scenario.test.mjs src/components/MainMenuActions.test.tsx src/multiplayer/clock.test.ts src/game/controls.test.ts src/multiplayer/CopyRoomCode.test.tsx",
+    "test": "node --import tsx --test src/game/logic.test.ts shared/protocol.test.ts server/simulation.test.ts server/rooms.test.ts server/integration.test.ts server/hardening.test.ts scripts/load-scenario.test.mjs src/components/MainMenuActions.test.tsx src/multiplayer/clock.test.ts src/game/controls.test.ts src/multiplayer/CopyRoomCode.test.tsx src/multiplayer/PlayerName.test.tsx",
     "preview": "vite preview --host 0.0.0.0",
     "dev:server": "tsx server/index.ts",
     "build:client": "tsc -b && vite build",

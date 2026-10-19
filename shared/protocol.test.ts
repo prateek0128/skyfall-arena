@@ -5,6 +5,13 @@ test('protocol requires exact versioned intent schema',()=>{
  assert.ok(validateCommand({v:1,type:'create',name:'Pilot 7'}));
  for(const value of [{v:2,type:'start'},{v:1,type:'damage',amount:25},{v:1,type:'join',name:'A',code:'ABC123'},{v:1,type:'create',name:'<script>'},{v:1,type:'create',name:' A'},null,[]])assert.equal(validateCommand(value),false);
 });
+test('hosts and joining players must choose a name; blank names are never registered with a fallback',()=>{
+ for(const type of ['create','join'] as const){
+  const command={v:1,type,...(type==='join'?{code:'AAAAAA'}:{})};
+  for(const name of ['', ' ', '\t', ' Alpha', 'Alpha ', '<script>', 'a'.repeat(19)])assert.equal(validateCommand({...command,name}),false);
+  for(const name of ['Anika','Kai_7','Pilot'])assert.equal(validateCommand({...command,name}),true);
+ }
+});
 test('inputs reject forged positions, excessive axes, NaN, infinity and invalid sequence',()=>{
  const input=idleInput();assert.ok(validateCommand({v:1,type:'input',input}));
  for(const patch of [{position:{x:100}},{x:2},{yaw:Infinity},{pitch:NaN},{seq:-1},{seq:1.5},{fire:1},{yaw:10}])assert.equal(validateCommand({v:1,type:'input',input:{...input,...patch}}),false);
