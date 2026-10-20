@@ -26,4 +26,3 @@ dist/assets/physics-runtime-DW2HfIcf.js  2,237.13 kB │ gzip: 830.29 kB
 
 > skyfall-arena@0.1.0 build:server
 > tsc -p tsconfig.server.json
-

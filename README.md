@@ -12,13 +12,26 @@ Client connection/welcome attempts now time out after five seconds; automatic re
 
 See [local gameplay/reliability evidence](reports/gameplay-reliability-validation.md) for commands, exact test counts, two-browser lobby/restart checks, independent solo combat, and incomplete browser checks. Historical production observations below describe their original audit dates; this update makes no new live-host claim.
 
-## Current dual-mode verification (2026-10-17)
+## Production status and dashboard verification (2026-10-20)
 
-The supplied deployed frontend is `https://skyfall-arena-kappa.vercel.app/`. **Single-player launched and flew after a multiplayer configuration failure, but multiplayer is currently blocked in that deployed build.** Two real browser clients both displayed “Multiplayer is not configured. Set VITE_WS_URL when building the frontend.” The observed production JS passes an undefined endpoint before WebSocket construction. The repository only contains example WSS domains; the actual production Node endpoint and logs are unavailable. No endpoint was guessed and no production settings or deployment were changed.
+Confirmed by the read-only [release audit](reports/release-readiness.md): frontend `https://skyfall-arena-kappa.vercel.app/`, server `https://skyfall-arena.onrender.com`, and the served frontend's build-time WebSocket URL **`wss://skyfall-arena.onrender.com/`**. TLS, `/health` and `/ready` passed; root WebSocket Upgrade admitted the frontend Origin (101) and refused one unexpected Origin (403). These are recorded observations, not dashboard verification or a new production gameplay run.
+
+**Release remains on hold pending dashboard verification.** The local Git origin is `https://github.com/prateek0128/skyfall-arena.git`, branch `main`, audited commit `76cc70986d41ee1b311942405930f19753ab9492`. Expected settings below come from source and local builds. The actual Vercel/Render linked repository, branch, deployed commit, commands, environment and instance count have not been independently verified. Review the existing Skyfall services; do not create a replacement service or touch NEON GRID. Rooms/results/resume tokens remain in memory and are lost on server restart.
+
+| Service | Expected settings to compare with the actual dashboard |
+|---|---|
+| Vercel | This Skyfall repository, production branch `main`, repository root, Vite; build `npm run build:client` (`npm run build` also builds correctly); output `dist`; Production `VITE_WS_URL=wss://skyfall-arena.onrender.com/`. Static frontend has no persistent Node start command or server health path. Check the deployment's actual SHA. |
+| Render | Same Skyfall repository, branch `main`, repository root; Node Web Service; build `npm ci --include=dev && npm run build:server`; start `npm run start:server` → `node dist-server/server/index.js`; health path `/ready`; one persistent instance. Check the deployment's actual SHA and expected server environment below. |
+
+The default local build omits the public endpoint unless supplied at build time; do not upload an unconfigured `dist/`. No deployment, commit, push or production setting change was performed by this audit work. Historical failed observations below remain valid for their dates.
+
+## Historical dual-mode verification (2026-10-17)
+
+The supplied deployed frontend is `https://skyfall-arena-kappa.vercel.app/`. **At the 2026-10-17 audit, single-player launched and flew after a multiplayer configuration failure; multiplayer was blocked in the then-served build.** Two real browser clients both displayed “Multiplayer is not configured. Set VITE_WS_URL when building the frontend.” That audit observed production JS passing an undefined endpoint before WebSocket construction. Only example WSS domains were then documented; the actual production Node endpoint and logs were unavailable to that audit. No endpoint was guessed and no production settings or deployment were changed.
 
 Local source now explicitly offers **Single Player** and **Multiplayer · Private Rooms** together and fixes the multiplayer timer's `1:60` boundary display. An isolated production frontend build and unchanged local authoritative server passed a two-real-browser flow: create/join, ready guard, shared countdown, flight/boost, combat and matching 140-point/1-elimination results, rematch, both refresh/resumes, host handoff, return to an unready lobby, and leave. After stopping that server, single-player still flew, destroyed a drone for 450 points and paused correctly. The full campaign was not manually completed in the browser; existing automated progression/victory tests pass.
 
-**47/47 tests, client/server typechecks and both production builds passed.** See [dual-mode verification](reports/dual-mode-verification.md) for raw console/server/build/test captures and exact read-only production diagnostic steps. Production server TLS/WSS, proxy upgrades, exact allowed origins, health/readiness, logs and reconnect remain unverified until the actual endpoint/access is available. HTTPS success for the frontend does not verify the server. Local success is not a production multiplayer pass. No release or publication was performed.
+**47/47 tests, client/server typechecks and both production builds passed.** See [dual-mode verification](reports/dual-mode-verification.md) for raw console/server/build/test captures and exact read-only production diagnostic steps. At that checkpoint, production server TLS/WSS, proxy upgrades, exact allowed origins, health/readiness, logs and reconnect were unverified. See the current production status above for subsequent public-endpoint checks; dashboard/log access and the full effective configuration remain unverified. HTTPS success for the frontend does not verify the server. Local success is not a production multiplayer pass. No release or publication was performed.
 
 ## Run locally
 
@@ -77,17 +90,17 @@ NODE_ENV=production HOST=127.0.0.1 PORT=2567 \
   ALLOWED_ORIGINS=https://game.example.com npm run start:server
 ```
 
-## Render server preparation — manual deployment only
+## Existing Render server — expected settings, dashboard verification required
 
-No Render service has been created, and no production server hostname is known. The existing server already reads `HOST` and `PORT`; no networking, physics or security-code change is required. **Render ingress requires `HOST=0.0.0.0`**. Leaving this application's local default `127.0.0.1` would prevent ingress. The public service uses Render-managed TLS; Node continues to serve HTTP on its internal port. References: [Render Web Services](https://render.com/docs/web-services), [WebSockets](https://render.com/docs/websocket), [health checks](https://render.com/docs/health-checks), [Node versions](https://render.com/docs/node-version).
+The existing server endpoint is `https://skyfall-arena.onrender.com`; public probes and root WebSocket Upgrade were checked in the release audit. Its actual dashboard bindings and settings remain unverified. The existing server already reads `HOST` and `PORT`; no networking, physics or security-code change is required. **Render ingress requires `HOST=0.0.0.0`**. Leaving this application's local default `127.0.0.1` would prevent ingress. The public service uses Render-managed TLS; Node continues to serve HTTP on its internal port. References: [Render Web Services](https://render.com/docs/web-services), [WebSockets](https://render.com/docs/websocket), [health checks](https://render.com/docs/health-checks), [Node versions](https://render.com/docs/node-version).
 
-When you choose to deploy, connect the actual Git repository containing the reviewed changes. The local absolute filesystem path cannot be entered as Render's repository source. The current branch is `main`, but uncommitted/local-only changes are not available to Render until you separately authorize and publish them. No commit/push is performed by this preparation.
+Before any separately authorized release, verify that the existing service is linked to `https://github.com/prateek0128/skyfall-arena.git`, branch `main`, and compare its deployed SHA with the reviewed candidate. The local absolute filesystem path cannot be entered as Render's repository source. The current branch is `main`, but uncommitted/local-only changes are not available to Render until you separately authorize and publish them. No commit/push is performed by this preparation.
 
-Enter these settings in **New → Web Service** (not Static Site, Private Service, or Background Worker):
+Compare the existing Skyfall **Node Web Service** dashboard against these expected settings. This checklist does not authorize changing settings or creating a new service:
 
 | Dashboard setting | Value |
 |---|---|
-| Repository / Branch | Your actual repository / the branch containing the reviewed version (`main` locally) |
+| Repository / Branch | `prateek0128/skyfall-arena` / `main`; actual dashboard binding and deployed SHA still require verification |
 | Root Directory | Leave blank: repository root containing `package.json`, `server/`, and `shared/` |
 | Language / Runtime | Node |
 | Build Command | `npm ci --include=dev && npm run build:server` |
@@ -101,7 +114,7 @@ Enter these settings in **New → Web Service** (not Static Site, Private Servic
 
 `npm ci --include=dev` deliberately includes TypeScript and Node types even with `NODE_ENV=production`. `npm run build:server` compiles the shared/server TypeScript to `dist-server/`, including the verified entrypoint `dist-server/server/index.js`; `npm run start:server` executes that file. No `tsx`, Vite dev server, watch mode, backgrounding (`&`), frontend build or custom start wrapper is required for the Render server. Do not change Root Directory to `server/`, because compilation/imports also require `shared/` and the root configuration/lockfile.
 
-Copy these **non-secret server settings** from [.env.render.example](.env.render.example) into Render's environment settings:
+Verify these **expected, non-secret server settings** from [.env.render.example](.env.render.example) against the actual Render environment; they are not a claim about dashboard values:
 
 ```text
 NODE_VERSION=24.18.0
@@ -124,18 +137,18 @@ Keep `ALLOWED_ORIGINS` exactly as shown: one HTTPS origin with **no trailing sla
 - SIGTERM invokes the existing drain/1012 restart notice and bounded five-second shutdown. Keep platform shutdown grace longer than this; Render documents a default 30-second window. Do not add a second Node worker/process manager cluster. Collect JSON operational logs, including `server_started`, `upgrade_rejected`, `command_rejected`, `server_metrics`, `server_draining` and `server_stopped`; the upstream Rapier warning remains on stderr.
 - **Proxy/IP admission remains an operational check:** the server intentionally uses the TCP peer and does not trust `X-Forwarded-For`. Render proxy traffic can share app-level IP budgets. Verify the actual peer/admission behavior and trusted edge protections on Render; do not bypass or increase limits to hide rejections. The local single-room/two-browser pass does not establish Render capacity.
 
-### After a separately authorized Render deployment: Vercel and two-client verification
+### Existing Vercel/Render configuration and future authorized-release verification
 
-1. Wait for `/ready` to pass and the Render logs to show `server_started`. Copy the **actual assigned HTTPS service URL** from the dashboard. No such URL exists in this repository yet; never derive it from a suggested service name or use the example domains.
+1. In the existing Skyfall Render dashboard, verify the service URL `https://skyfall-arena.onrender.com`, repository, branch, deployed SHA and commands against the expected settings. Correlate `/ready` with `server_started` logs if access is available. Do not use a suggested service name, an example domain or the NEON GRID service.
 2. Check both `/health` and `/ready` on that real HTTPS origin with normal certificate verification. Expect 200 and readiness true. Do not use `curl -k`, a private Render hostname, localhost or the internal port in the public client.
-3. Form `VITE_WS_URL` by changing that confirmed service URL's scheme from `https://` to `wss://` and using `/` as its path for this direct setup. There is no required `/socket` suffix. This is a derivation rule, **not a claimed deployed endpoint**.
-4. In the existing Vercel frontend project, open **Environment Variables**, add `VITE_WS_URL` for **Production**, and set it to the confirmed WSS root URL. Only this public URL belongs in the frontend. A new Vercel production build/deployment must be separately authorized: environment changes do not update old bundles. Confirm the active frontend is no longer using an undefined endpoint. Preview environments are not allowed by the server profile and require a deliberate origin policy if later needed; do not enable wildcard origins.
+3. Verify `VITE_WS_URL=wss://skyfall-arena.onrender.com/` for the Vercel Production build. This exact value was observed in the served frontend bundle. Use the root path; do not append `/socket`, `/ws` or the internal port.
+4. In the existing Vercel frontend project, inspect **Environment Variables** and the active production deployment to confirm the public URL and the correct Skyfall repository, branch, SHA, root/build/output settings. Do not change settings as part of verification. Only this public URL belongs in the frontend. A new Vercel production build/deployment must be separately authorized: environment changes do not update old bundles. The release audit confirmed the served frontend was using the expected endpoint; repeat that check after any separately authorized deployment. Preview environments are not allowed by the server profile and require a deliberate origin policy if later needed; do not enable wildcard origins.
 5. Open `https://skyfall-arena-kappa.vercel.app/` in two independent browser tabs/windows. Preserve Console and Network logs. Create a room in one, join the actual code in the other, and verify a WebSocket **101 Switching Protocols** to the confirmed WSS URL with exactly that frontend Origin. Verify both rosters, ready/unready, host launch guard, countdown, flight/boost, hits/elimination, matching results, rematch and return to lobby.
 6. Refresh one pilot and choose saved-session reconnect inside 20 seconds. Exercise host handoff and a temporary network interruption; correlate server/proxy logs. Test expired reconnect and an actual server restart: old rooms must end rather than falsely resume. Confirm single-player works with the server unavailable. Record failures rather than declaring production success.
 
 Local preparation verification (2026-10-17, Node 24.18.0 on macOS): both clean installs (`npm ci --include=dev`, including `NODE_ENV=production`) passed in an isolated temporary source copy, with 102 packages installed and zero audit vulnerabilities reported. The fresh `npm run build:server` generated the expected entrypoint; the exact `npm run start:server` command passed probes, root WebSocket room creation and graceful SIGTERM checks on `0.0.0.0:10000`. The 30 relevant server/protocol tests and full **49/49 tests** passed; client/server TypeScript checks and both production builds passed. See [Render preparation evidence](reports/render-preparation.md), [raw verification output](reports/render-preparation.log) and [startup smoke result](reports/render-start-smoke.json). This is local evidence, not a Render/Linux or public-TLS certification. Existing Rapier/bundle warnings remain. npm also reported install-script policy warnings for esbuild/fsevents in the isolated install; the server build/start succeeded without changing that policy.
 
-Remaining blockers: the reviewed source must become available to Render, a service must actually be provisioned/deployed, its hostname/TLS/Upgrade/probes/origins and proxy admission must be verified, and two real production clients plus target-host soak/load testing must pass. The local preparation and tests do not establish production readiness. Vercel's active frontend remains unchanged and blocked until a confirmed endpoint is baked into a new build. No service, hostname, route rewrite, disk, database or deployment was created here.
+Remaining verification: actual Vercel/Render dashboard bindings, deployed SHAs, commands and environment; effective proxy/IP admission; production gameplay for the selected candidate and target-host soak/load coverage. A server is already reachable and the served frontend contains the expected endpoint; provisioning or fixing an undefined URL is no longer the documented blocker. The local preparation alone does not establish production readiness. No production settings, service, route rewrite, disk, database or deployment were changed by this documentation update.
 
 ## Deployment requirements — not performed here
 

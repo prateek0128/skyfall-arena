@@ -1,5 +1,7 @@
 # Render preparation evidence — 2026-10-17
 
+> Historical evidence from 2026-10-17. The endpoint-discovery/deployment-blocked statements below describe that checkpoint, not current deployment status. The 2026-10-20 [release audit](release-readiness.md) records the confirmed public endpoints and limited TLS/probe/Upgrade checks; actual dashboard bindings, deployed SHAs and settings remain unverified. Original outcomes and logs are preserved.
+
 No Render service, deployment, commit, push, Vercel environment change or external configuration change was made. The pre-existing uncommitted menu/clock work and verification artifacts were preserved. No production hostname is known or invented.
 
 ## Change scope

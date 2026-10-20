@@ -1,0 +1,86 @@
+
+> skyfall-arena@0.1.0 test
+> node --import tsx --test src/game/logic.test.ts shared/protocol.test.ts server/simulation.test.ts server/rooms.test.ts server/integration.test.ts server/hardening.test.ts scripts/load-scenario.test.mjs src/components/MainMenuActions.test.tsx src/multiplayer/clock.test.ts src/game/controls.test.ts src/multiplayer/CopyRoomCode.test.tsx src/multiplayer/PlayerName.test.tsx src/multiplayer/network.test.ts
+
+using deprecated parameters for the initialization function; pass a single object instead
+✔ harness aim predicts a hit, resolved only by unchanged authoritative simulation (82.982554ms)
+✔ fixed upward aim can hit a pilot behind the shooter through camera targeting (93.993091ms)
+✔ skirmish driver stops targeting a half-health buddy; never mutates health (0.703694ms)
+✔ activity requires continuous movement/fire, every pilot alive and every full window present (0.709838ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ production config fails closed and origins are exact, canonical HTTPS origins (7.164001ms)
+✔ Render profile binds publicly on its ingress port without changing local defaults or security budgets (0.539865ms)
+✔ Render profile serves probes and root WebSocket upgrades on wildcard bind; rejects missing and lookalike origins (394.282866ms)
+✔ token buckets do not reset across boundary or reconnect, idle IP entries expire (5.437625ms)
+✔ health/readiness, graceful restart notification, refusal of upgrades and idempotent shutdown (542.769609ms)
+✔ heartbeat failure and unjoined session timeout remove stale clients (133.430729ms)
+✔ default origin policy rejects hostile origins and configured policy rejects missing origins (66.357324ms)
+✔ malformed JSON, binary messages, wrong versions, oversized payloads and forged authority close sockets (59.52889ms)
+✔ per-IP connection admission and room guessing budgets persist across sockets (21.761732ms)
+✔ unauthorized and duplicate room commands cannot bypass host, readiness or match guards (48.06637ms)
+✔ abrupt disconnect expiry invalidates tokens and frees an abandoned active room (165.909599ms)
+✔ room expiry uses monotonic housekeeping time even if simulation catch-up is bounded (2.821847ms)
+✔ simulation failure flips health and readiness and produces an operational error log (43.914685ms)
+✔ server restart does not resurrect an old room or reconnect credential (31.19868ms)
+✔ inactive connected lobbies expire with a fatal notice and release room resources (4.124609ms)
+✔ startup bind failure releases its scheduler and can be retried on another port (6.633493ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ real WebSocket clients join, move, fight, resume with token rotation, finish and rematch (1905.101771ms)
+✔ server rejects forged authority and rate floods without affecting another room (36.995053ms)
+✔ eight real clients respect capacity, transfer host on disconnect, and share timeout results (905.955621ms)
+✔ configured origin allowlist rejects unexpected browser origins (6.617841ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ room requires host, two connected ready pilots and enforces capacity (20.86492ms)
+✔ disconnect migrates host, cancels countdown, rotates reconnect token and cleans empty room (30.645256ms)
+✔ rematch, lobby transition, replay input and explicit leave use server state (74.488622ms)
+✔ replacement session revokes the prior live socket and rejects stale commands (6.837267ms)
+✔ interleaved ready/start, combat disconnect, results and rematch stay isolated across rooms (11.504239ms)
+✔ reconnect grace expiry and room disposal reject old credentials without ghost entries (40.321102ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ bounds, cooldown and damage are constrained by server rules (16.07418ms)
+✔ server simulates normalized flight, solid landing, stale input braking and fall recovery (206.713048ms)
+✔ server raycast scores hits and eliminations at fire cooldown; cover blocks damage (50.60612ms)
+✔ simultaneous lethal fire has deterministic single elimination and no duplicate award (9.022337ms)
+✔ protocol requires exact versioned intent schema (3.499678ms)
+✔ hosts and joining players must choose a name; blank names are never registered with a fallback (0.745831ms)
+✔ inputs reject forged positions, excessive axes, NaN, infinity and invalid sequence (0.748015ms)
+✔ frontend endpoint config preserves local preview and single-player-safe errors (19.952292ms)
+✔ main menu offers both modes without starting a session during render (57.708193ms)
+✔ arena loading disables solo launch while keeping the multiplayer menu accessible (3.529523ms)
+✔ both primary buttons retain their navigation callbacks and matching style (2.593208ms)
+✔ arrow directions match existing WASD axes and equivalent keys never stack (3.829417ms)
+✔ mixed-key diagonals keep the same normalized speed and camera-relative flight (0.788385ms)
+✔ keydown prevents gameplay scrolling and keyup immediately releases the correct alias (1.938027ms)
+✔ blur, Escape and gameplay exit clear movement, thrust, boost and shooting (1.180282ms)
+✔ UI focus clears held input and arrows remain available for menu navigation (0.633705ms)
+✔ focused controls also block input without a focus event; cleanup removes every listener (0.48892ms)
+✔ drag mouse-look, shooting and release work as before; blur clears drag state (0.655684ms)
+✔ fuel drains, boost costs more, regeneration is bounded (5.173723ms)
+✔ diagonal input never increases speed and follows camera yaw (0.75437ms)
+✔ four falls exhaust health without negative values (0.293204ms)
+✔ flight caps ascent and released thrust preserves gravity velocity (0.39092ms)
+✔ accuracy handles no shots, misses and hits (0.577649ms)
+✔ kills chain within five seconds, cap at 5x, expire and reject duplicates (0.444095ms)
+✔ seven kills advance wave, restore bounded hull and reset wave timer (1.611468ms)
+✔ pause freezes timer, damage, shots and progression; resume preserves match (0.442199ms)
+✔ timeout and hull loss end the match, terminal states cannot resume or score (1.123088ms)
+✔ horizontal smoothing is consistent across frame rates, thrust settles predictably (1.031512ms)
+✔ restart resets telemetry and stats while preserving readiness and audio preference (0.515849ms)
+✔ match, fuel and controls use the same Rapier delta at low frame rates (0.366033ms)
+✔ drone progression is gradual, bounded and always leaves a locked dodge window (1.202423ms)
+✔ return home clears results and telemetry; retry starts one fresh survival run (0.418611ms)
+✔ copy writes the exact current code and preserves clipboard method binding (9.390768ms)
+✔ missing clipboard and denied/rejected writes fail gracefully and can be retried (3.345095ms)
+✔ copy control is a labelled keyboard button with decorative SVG and polite feedback (44.144562ms)
+✔ new multiplayer player names start blank with neutral input guidance (53.735523ms)
+✔ name field preserves explicit custom values and an explicitly cleared value (14.828724ms)
+✔ fractional multiplayer countdown never renders sixty seconds (2.171759ms)
+✔ client recovery preserves identity, rotates credentials, deduplicates shots and exits stale sessions (202.246748ms)
+ℹ tests 69
+ℹ suites 0
+ℹ pass 69
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4066.706673

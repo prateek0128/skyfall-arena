@@ -1,0 +1,140 @@
+$ npm test
+
+> skyfall-arena@0.1.0 test
+> node --import tsx --test src/game/logic.test.ts shared/protocol.test.ts server/simulation.test.ts server/rooms.test.ts server/integration.test.ts server/hardening.test.ts scripts/load-scenario.test.mjs src/components/MainMenuActions.test.tsx src/multiplayer/clock.test.ts src/game/controls.test.ts src/multiplayer/CopyRoomCode.test.tsx src/multiplayer/PlayerName.test.tsx src/multiplayer/network.test.ts
+
+using deprecated parameters for the initialization function; pass a single object instead
+✔ harness aim predicts a hit, resolved only by unchanged authoritative simulation (40.514642ms)
+✔ fixed upward aim can hit a pilot behind the shooter through camera targeting (8.865312ms)
+✔ skirmish driver stops targeting a half-health buddy; never mutates health (0.680733ms)
+✔ activity requires continuous movement/fire, every pilot alive and every full window present (4.048937ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ production config fails closed and origins are exact, canonical HTTPS origins (7.352892ms)
+✔ Render profile binds publicly on its ingress port without changing local defaults or security budgets (0.478185ms)
+✔ Render profile serves probes and root WebSocket upgrades on wildcard bind; rejects missing and lookalike origins (284.511786ms)
+✔ token buckets do not reset across boundary or reconnect, idle IP entries expire (0.777506ms)
+✔ health/readiness, graceful restart notification, refusal of upgrades and idempotent shutdown (535.665798ms)
+✔ heartbeat failure and unjoined session timeout remove stale clients (101.807406ms)
+✔ default origin policy rejects hostile origins and configured policy rejects missing origins (6.302341ms)
+✔ malformed JSON, binary messages, wrong versions, oversized payloads and forged authority close sockets (31.044344ms)
+✔ per-IP connection admission and room guessing budgets persist across sockets (15.095189ms)
+✔ unauthorized and duplicate room commands cannot bypass host, readiness or match guards (78.590319ms)
+✔ abrupt disconnect expiry invalidates tokens and frees an abandoned active room (157.166368ms)
+✔ room expiry uses monotonic housekeeping time even if simulation catch-up is bounded (0.875242ms)
+✔ simulation failure flips health and readiness and produces an operational error log (77.278911ms)
+✔ server restart does not resurrect an old room or reconnect credential (19.002022ms)
+✔ inactive connected lobbies expire with a fatal notice and release room resources (1.197099ms)
+✔ startup bind failure releases its scheduler and can be retried on another port (2.369115ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ real WebSocket clients join, move, fight, resume with token rotation, finish and rematch (1849.763834ms)
+✔ server rejects forged authority and rate floods without affecting another room (40.053575ms)
+✔ eight real clients respect capacity, transfer host on disconnect, and share timeout results (850.543151ms)
+✔ configured origin allowlist rejects unexpected browser origins (8.409376ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ room requires host, two connected ready pilots and enforces capacity (24.926116ms)
+✔ disconnect migrates host, cancels countdown, rotates reconnect token and cleans empty room (10.105117ms)
+✔ rematch, lobby transition, replay input and explicit leave use server state (50.074975ms)
+✔ replacement session revokes the prior live socket and rejects stale commands (1.71168ms)
+✔ interleaved ready/start, combat disconnect, results and rematch stay isolated across rooms (45.510378ms)
+✔ reconnect grace expiry and room disposal reject old credentials without ghost entries (1.492462ms)
+using deprecated parameters for the initialization function; pass a single object instead
+✔ bounds, cooldown and damage are constrained by server rules (2.04232ms)
+✔ server simulates normalized flight, solid landing, stale input braking and fall recovery (157.379215ms)
+✔ server raycast scores hits and eliminations at fire cooldown; cover blocks damage (17.209319ms)
+✔ simultaneous lethal fire has deterministic single elimination and no duplicate award (29.629813ms)
+✔ protocol requires exact versioned intent schema (41.020023ms)
+✔ hosts and joining players must choose a name; blank names are never registered with a fallback (0.625141ms)
+✔ inputs reject forged positions, excessive axes, NaN, infinity and invalid sequence (3.600484ms)
+✔ frontend endpoint config preserves local preview and single-player-safe errors (1.552243ms)
+✔ main menu offers both modes without starting a session during render (29.414952ms)
+✔ arena loading disables solo launch while keeping the multiplayer menu accessible (4.253823ms)
+✔ both primary buttons retain their navigation callbacks and matching style (7.731581ms)
+✔ arrow directions match existing WASD axes and equivalent keys never stack (4.627547ms)
+✔ mixed-key diagonals keep the same normalized speed and camera-relative flight (0.683315ms)
+✔ keydown prevents gameplay scrolling and keyup immediately releases the correct alias (1.704718ms)
+✔ blur, Escape and gameplay exit clear movement, thrust, boost and shooting (2.191884ms)
+✔ UI focus clears held input and arrows remain available for menu navigation (0.496626ms)
+✔ focused controls also block input without a focus event; cleanup removes every listener (0.42948ms)
+✔ drag mouse-look, shooting and release work as before; blur clears drag state (2.343084ms)
+✔ fuel drains, boost costs more, regeneration is bounded (3.392676ms)
+✔ diagonal input never increases speed and follows camera yaw (2.038452ms)
+✔ four falls exhaust health without negative values (0.253589ms)
+✔ flight caps ascent and released thrust preserves gravity velocity (0.556555ms)
+✔ accuracy handles no shots, misses and hits (1.050366ms)
+✔ kills chain within five seconds, cap at 5x, expire and reject duplicates (0.549124ms)
+✔ seven kills advance wave, restore bounded hull and reset wave timer (2.750141ms)
+✔ pause freezes timer, damage, shots and progression; resume preserves match (0.424753ms)
+✔ timeout and hull loss end the match, terminal states cannot resume or score (0.421629ms)
+✔ horizontal smoothing is consistent across frame rates, thrust settles predictably (2.11357ms)
+✔ restart resets telemetry and stats while preserving readiness and audio preference (0.742883ms)
+✔ match, fuel and controls use the same Rapier delta at low frame rates (0.418104ms)
+✔ drone progression is gradual, bounded and always leaves a locked dodge window (1.289344ms)
+✔ return home clears results and telemetry; retry starts one fresh survival run (0.410346ms)
+✔ copy writes the exact current code and preserves clipboard method binding (1.556931ms)
+✔ missing clipboard and denied/rejected writes fail gracefully and can be retried (0.524298ms)
+✔ copy control is a labelled keyboard button with decorative SVG and polite feedback (10.691977ms)
+✔ new multiplayer player names start blank with neutral input guidance (11.529233ms)
+✔ name field preserves explicit custom values and an explicitly cleared value (1.587416ms)
+✔ fractional multiplayer countdown never renders sixty seconds (1.575964ms)
+✔ client recovery preserves identity, rotates credentials, deduplicates shots and exits stale sessions (33.416204ms)
+ℹ tests 69
+ℹ suites 0
+ℹ pass 69
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3387.863968
+exit=0
+
+$ npm run typecheck
+
+> skyfall-arena@0.1.0 typecheck
+> tsc -b && tsc -p tsconfig.server.json --noEmit
+exit=0
+
+$ npm run build
+
+> skyfall-arena@0.1.0 build
+> npm run build:client && npm run build:server
+
+
+> skyfall-arena@0.1.0 build:client
+> tsc -b && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 360 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.74 kB │ gzip:   0.40 kB
+dist/assets/index-gXSbR840.css              13.86 kB │ gzip:   3.93 kB
+dist/assets/World-BqnDPByL.js              221.92 kB │ gzip:  70.83 kB
+dist/assets/index-DqQJooli.js              251.75 kB │ gzip:  79.25 kB
+dist/assets/three-runtime-CAV4-VF5.js      703.77 kB │ gzip: 181.23 kB
+dist/assets/physics-runtime-DW2HfIcf.js  2,237.13 kB │ gzip: 830.29 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.36s
+
+> skyfall-arena@0.1.0 build:server
+> tsc -p tsconfig.server.json
+exit=0
+
+$ git diff 76cc709^ 76cc709 --check
+reports/browser-completion-build.log:29: new blank line at EOF.
+reports/browser-completion-typecheck.log:4: new blank line at EOF.
+reports/gameplay-reliability-build.log:29: new blank line at EOF.
+reports/gameplay-reliability-typecheck.log:4: new blank line at EOF.
+exit=2
+
+$ git diff --check
+
+exit=0
+
+$ git diff 76cc709^ --check
+
+exit=0

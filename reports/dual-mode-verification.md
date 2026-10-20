@@ -1,5 +1,7 @@
 # Single-player and multiplayer verification — 2026-10-17
 
+> Historical evidence from 2026-10-17. The endpoint-discovery/deployment-blocked statements below describe that checkpoint, not current deployment status. The 2026-10-20 [release audit](release-readiness.md) records the confirmed public endpoints and limited TLS/probe/Upgrade checks; actual dashboard bindings, deployed SHAs and settings remain unverified. Original outcomes and logs are preserved.
+
 No deployment, commit, production configuration change, or external service modification was performed. Browser test actions were limited to the game UI. Baseline repository commit was `6be3839`; the working tree was clean before these changes. Earlier Phase 4 and load-test evidence is retained.
 
 ## Verified, failed, and incomplete checks
