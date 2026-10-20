@@ -4,6 +4,14 @@ A React/TypeScript/Vite 3D jetpack game with Three.js, React Three Fiber and Rap
 
 Phase 4 adds security/configuration checks, probes, bounded shutdown, operational metrics, lifecycle regressions and a reproducible load harness. **Local verification is not a production launch certification.** See remaining launch blockers below and the retained reports under `reports/`.
 
+## Local gameplay/reliability update (2026-10-20)
+
+The home screen retains equal Single Player and Multiplayer buttons. Local polish adds brief multiplayer hit flashes/authoritative elimination feedback, critical-hull cues, bounded drone evasion and varied attacks with a final 450 ms aim-lock warning, and **Return to Home** on survival results. WASD/arrows, room-code copy, blank initial names and all multiplayer authority rules remain unchanged.
+
+Client connection/welcome attempts now time out after five seconds; automatic recovery is bounded to eight retries within a 20-second window. Rejected/replaced/expired sessions return to room entry with a useful error. Server restarts still destroy all in-memory rooms/tokens: create or join a fresh room after availability returns. This changes recovery UI, not server grace or persistence.
+
+See [local gameplay/reliability evidence](reports/gameplay-reliability-validation.md) for commands, exact test counts, two-browser lobby/restart checks, independent solo combat, and incomplete browser checks. Historical production observations below describe their original audit dates; this update makes no new live-host claim.
+
 ## Current dual-mode verification (2026-10-17)
 
 The supplied deployed frontend is `https://skyfall-arena-kappa.vercel.app/`. **Single-player launched and flew after a multiplayer configuration failure, but multiplayer is currently blocked in that deployed build.** Two real browser clients both displayed “Multiplayer is not configured. Set VITE_WS_URL when building the frontend.” The observed production JS passes an undefined endpoint before WebSocket construction. The repository only contains example WSS domains; the actual production Node endpoint and logs are unavailable. No endpoint was guessed and no production settings or deployment were changed.

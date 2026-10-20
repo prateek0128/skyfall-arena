@@ -49,3 +49,41 @@ test('replacement session revokes the prior live socket and rejects stale comman
   assert.ok(!JSON.stringify(b.messages.filter(m=>m.type==='state')).includes(welcome.token));
  }finally{service.dispose();}
 });
+test('interleaved ready/start, combat disconnect, results and rematch stay isolated across rooms',()=>{
+ const service=new Rooms({countdownSeconds:.01,matchSeconds:.08,reconnectSeconds:.1});
+ const groups=[['A','B'],['C','D']].map(names=>{const [a,b]=names.map(peer);service.command(a.p,{v:1,type:'create',name:names[0]});service.command(b.p,{v:1,type:'join',code:a.p.room!,name:names[1]});return {a,b,code:a.p.room!};});
+ try{
+  for(const {a,b} of groups){
+   service.command(a.p,{v:1,type:'ready',ready:true});service.command(b.p,{v:1,type:'ready',ready:true});
+   service.command(b.p,{v:1,type:'ready',ready:false});service.command(a.p,{v:1,type:'start'});
+   assert.equal(service.rooms.get(a.p.room!)!.phase,'lobby');
+   service.command(b.p,{v:1,type:'ready',ready:true});service.command(a.p,{v:1,type:'start'});service.command(a.p,{v:1,type:'start'});
+   assert.equal(service.rooms.get(a.p.room!)!.matchId,1);
+  }
+  service.tick(.02);
+  const first=groups[0],second=groups[1],r=service.rooms.get(first.code)!,other=service.rooms.get(second.code)!;
+  const welcome=first.a.messages.find(m=>m.type==='welcome');if(welcome?.type!=='welcome')throw new Error();
+  const input={seq:1,x:1,z:-1,yaw:0,pitch:0,thrust:true,boost:true,fire:true};
+  for(const {a,b} of groups)for(const p of [a.p,b.p])service.command(p,{v:1,type:'input',input});
+  service.detach(first.a.p);service.detach(first.a.p);assert.equal(r.hostId,first.b.p.playerId);
+  const resumed=peer('resumed');service.command(resumed.p,{v:1,type:'resume',code:first.code,playerId:welcome.playerId,token:welcome.token});
+  assert.equal(r.members.size,2);assert.equal(r.hostId,first.b.p.playerId);assert.equal(r.members.get(welcome.playerId)!.pilot.lastInput,-Infinity);
+  service.command(resumed.p,{v:1,type:'lobby'});assert.equal(r.phase,'playing');
+  service.tick(.09);assert.equal(r.phase,'results');assert.equal(other.phase,'results');
+  const winners=[...r.winners];service.tick(.01);assert.deepEqual(r.winners,winners);
+  service.detach(first.b.p);assert.equal(r.hostId,resumed.p.playerId);
+  service.command(resumed.p,{v:1,type:'lobby'});assert.equal(r.phase,'lobby');assert.equal(other.phase,'results');
+  service.command(second.a.p,{v:1,type:'start'});assert.equal(other.matchId,2);assert.equal(r.matchId,1);
+  service.command(resumed.p,{v:1,type:'leave'});service.tick(.2);assert.equal(service.rooms.has(first.code),false);assert.equal(service.rooms.has(second.code),true);
+ }finally{service.dispose();}
+});
+test('reconnect grace expiry and room disposal reject old credentials without ghost entries',()=>{
+ const {service,a,b}=setup({reconnectSeconds:.1,idleSeconds:.2});try{
+  const welcome=a.messages.find(m=>m.type==='welcome');if(welcome?.type!=='welcome')throw new Error();
+  const code=a.p.room!;service.detach(a.p);service.tick(.11);
+  const retry=peer('retry');service.command(retry.p,{v:1,type:'resume',code,playerId:welcome.playerId,token:welcome.token});
+  assert.equal(retry.p.room,undefined);assert.equal(service.rooms.get(code)!.members.size,1);
+  service.detach(b.p);service.detach(b.p);service.tick(.3);assert.equal(service.rooms.size,0);
+  service.command(retry.p,{v:1,type:'resume',code,playerId:welcome.playerId,token:welcome.token});assert.equal(retry.p.room,undefined);
+ }finally{service.dispose();}
+});

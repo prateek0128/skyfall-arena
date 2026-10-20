@@ -1,6 +1,6 @@
 import { useEffect,useRef } from 'react';
 import { useFrame,useThree } from '@react-three/fiber';
-import { Group,PerspectiveCamera,Vector3 } from 'three';
+import { Group,MeshStandardMaterial,PerspectiveCamera,Vector3 } from 'three';
 import { network,useNetwork } from './network';
 import { useControls, movementInput } from '../game/controls';
 import { updateCamera } from '../game/Camera';
@@ -8,13 +8,15 @@ import { combat } from '../game/events';
 const options={active:()=>network.get().room?.phase==='playing'&&!network.get().menu&&network.get().status==='connected',pause:()=>network.set({menu:true}),subscribe:network.subscribe};
 const normalize=(angle:number)=>Math.atan2(Math.sin(angle),Math.cos(angle));
 function Avatar({id,index}:{id:string;index:number}){
- const group=useRef<Group>(null),flame=useRef<Group>(null);
+ const group=useRef<Group>(null),flame=useRef<Group>(null),material=useRef<MeshStandardMaterial>(null),hitAt=useRef(-Infinity);
+ useEffect(()=>network.onShot(e=>{if(e.hit===id)hitAt.current=performance.now();}),[id]);
  useFrame(()=>{
   const p=network.sample(id,id===network.get().playerId);if(!p||!group.current)return;
   group.current.visible=p.alive;group.current.position.set(p.position.x,p.position.y,p.position.z);group.current.rotation.y=p.yaw;
+  if(material.current)material.current.emissiveIntensity=performance.now()-hitAt.current<140?1.8:0;
   if(flame.current){flame.current.visible=p.thrust;flame.current.scale.y=p.boost?1.8:1;}
  });
- return <group ref={group}><mesh castShadow><capsuleGeometry args={[.32,.65,5,10]}/><meshStandardMaterial color={id===network.get().playerId?'#dcece8':['#f2ac73','#acb7ff','#eaa5d4','#d5dd89'][index%4]} metalness={.45} roughness={.4}/></mesh><mesh position={[0,.65,0]}><sphereGeometry args={[.3,16,12]}/><meshStandardMaterial color="#243d50" metalness={.8} roughness={.2}/></mesh><mesh position={[0,.68,-.23]}><boxGeometry args={[.4,.11,.12]}/><meshBasicMaterial color="#70fff1"/></mesh><mesh position={[.42,.05,-.36]}><boxGeometry args={[.14,.18,.6]}/><meshStandardMaterial color="#172d40"/></mesh><group ref={flame}>{[-1,1].map(s=><group key={s} position={[s*.24,0,.3]}><mesh><cylinderGeometry args={[.14,.16,.65,10]}/><meshStandardMaterial color="#273d4c"/></mesh><mesh position={[0,-.65,0]} rotation={[Math.PI,0,0]}><coneGeometry args={[.13,.8,8]}/><meshBasicMaterial color="#67fff1"/></mesh></group>)}</group></group>;
+ return <group ref={group}><mesh castShadow><capsuleGeometry args={[.32,.65,5,10]}/><meshStandardMaterial ref={material} emissive="#b6fff0" emissiveIntensity={0} color={id===network.get().playerId?'#dcece8':['#f2ac73','#acb7ff','#eaa5d4','#d5dd89'][index%4]} metalness={.45} roughness={.4}/></mesh><mesh position={[0,.65,0]}><sphereGeometry args={[.3,16,12]}/><meshStandardMaterial color="#243d50" metalness={.8} roughness={.2}/></mesh><mesh position={[0,.68,-.23]}><boxGeometry args={[.4,.11,.12]}/><meshBasicMaterial color="#70fff1"/></mesh><mesh position={[.42,.05,-.36]}><boxGeometry args={[.14,.18,.6]}/><meshStandardMaterial color="#172d40"/></mesh><group ref={flame}>{[-1,1].map(s=><group key={s} position={[s*.24,0,.3]}><mesh><cylinderGeometry args={[.14,.16,.65,10]}/><meshStandardMaterial color="#273d4c"/></mesh><mesh position={[0,-.65,0]} rotation={[Math.PI,0,0]}><coneGeometry args={[.13,.8,8]}/><meshBasicMaterial color="#67fff1"/></mesh></group>)}</group></group>;
 }
 export function MultiplayerScene(){
  const net=useNetwork(),controls=useControls(options),sent=useRef(0),match=useRef(-1);

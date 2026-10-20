@@ -12,6 +12,7 @@ export const game={
  set:(patch:Partial<GameState>)=>{state={...state,...patch};listeners.forEach(fn=>fn());},
  act:(action:MatchAction)=>{const next=advanceMatch(state,action);if(next!==state)game.set(next);},
  notify:(message:string,seconds=3)=>game.set({message,messageUntil:state.elapsed+seconds}),
+ home:()=>game.set({...initialMatch(),...telemetry,run:state.run+1}),
  restart:()=>game.set({...advanceMatch(state,{type:'start'}),...telemetry,run:state.run+1}),
  subscribe:(fn:()=>void)=>{listeners.add(fn);return()=>{listeners.delete(fn);};},
 };

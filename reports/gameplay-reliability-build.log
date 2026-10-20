@@ -1,0 +1,29 @@
+
+> skyfall-arena@0.1.0 build
+> npm run build:client && npm run build:server
+
+
+> skyfall-arena@0.1.0 build:client
+> tsc -b && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 360 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.74 kB │ gzip:   0.40 kB
+dist/assets/index-gXSbR840.css              13.86 kB │ gzip:   3.93 kB
+dist/assets/World-BqnDPByL.js              221.92 kB │ gzip:  70.83 kB
+dist/assets/index-DqQJooli.js              251.75 kB │ gzip:  79.25 kB
+dist/assets/three-runtime-CAV4-VF5.js      703.77 kB │ gzip: 181.23 kB
+dist/assets/physics-runtime-DW2HfIcf.js  2,237.13 kB │ gzip: 830.29 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.01s
+
+> skyfall-arena@0.1.0 build:server
+> tsc -p tsconfig.server.json
+

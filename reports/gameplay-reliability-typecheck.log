@@ -1,0 +1,4 @@
+
+> skyfall-arena@0.1.0 typecheck
+> tsc -b && tsc -p tsconfig.server.json --noEmit
+

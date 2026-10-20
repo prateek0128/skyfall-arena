@@ -30,3 +30,14 @@ test('server raycast scores hits and eliminations at fire cooldown; cover blocks
   for(let i=0;i<25;i++){a.lastInput=s.time;s.step(1/30);}assert.equal(b.state.health,100);
  }finally{s.dispose();}
 });
+test('simultaneous lethal fire has deterministic single elimination and no duplicate award',()=>{
+ const s=new Simulation();try{
+  const a=s.add('a','A',0),b=s.add('b','B',1);a.state.health=b.state.health=25;
+  a.input={...idleInput(),fire:true,yaw:-Math.PI/2,pitch:-.12};b.input={...idleInput(),fire:true,yaw:Math.PI/2,pitch:-.12};
+  a.lastInput=b.lastInput=s.time;const events=s.step(1/30);
+  assert.equal(events.filter(e=>e.eliminated).length,1);assert.equal(a.state.alive,true);assert.equal(b.state.alive,false);
+  assert.equal(a.state.score,110);assert.equal(a.state.eliminations,1);
+  s.eliminate(b,a);assert.equal(a.state.score,110);assert.equal(a.state.eliminations,1);
+  for(let i=0;i<30;i++){a.lastInput=s.time;s.step(1/30);}assert.equal(a.state.eliminations,1);assert.equal(a.state.score,110);
+ }finally{s.dispose();}
+});

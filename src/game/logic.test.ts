@@ -74,3 +74,22 @@ test('match, fuel and controls use the same Rapier delta at low frame rates',()=
  for(let i=0;i<10;i++){const dt=simulationDelta(.2);s=advanceMatch(s,{type:'tick',dt});fuel=fuelStep(fuel,true,false,dt);}
  assert.ok(Math.abs(s.elapsed-2)<1e-9);assert.ok(Math.abs(fuel-54)<1e-9);
 });
+
+import {droneProfile,droneCooldown} from './drone';
+test('drone progression is gradual, bounded and always leaves a locked dodge window',()=>{
+ for(let wave=1;wave<=3;wave++)for(let id=0;id<7;id++){
+  const p=droneProfile(wave,id);assert.ok(p.warning>=.8);assert.ok(p.warning-p.lockWindow>=.35-1e-9);
+  assert.ok(p.radius<=2.05+1e-9);assert.ok(p.speed<=1.24+1e-9);
+  for(let attack=0;attack<20;attack++)assert.ok(droneCooldown(wave,id,attack)>=2.7);
+ }
+ assert.ok(droneProfile(3,0).cooldown<droneProfile(2,0).cooldown);
+ assert.ok(droneProfile(2,0).cooldown<droneProfile(1,0).cooldown);
+ assert.notEqual(droneCooldown(1,0,1),droneCooldown(1,0,2));
+});
+test('return home clears results and telemetry; retry starts one fresh survival run',()=>{
+ game.restart();game.act({type:'damage',amount:100});game.set({fuel:5,hit:1,hurt:1});
+ assert.equal(game.get().phase,'over');const run=game.get().run;
+ game.home();assert.equal(game.get().phase,'ready');assert.equal(game.get().health,100);assert.equal(game.get().fuel,100);
+ assert.equal(game.get().outcome,null);assert.equal(game.get().score,0);assert.equal(game.get().hurt,-Infinity);assert.equal(game.get().run,run+1);
+ game.restart();assert.equal(game.get().phase,'playing');assert.equal(game.get().destroyed,0);
+});

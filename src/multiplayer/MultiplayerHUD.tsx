@@ -14,12 +14,13 @@ export function MultiplayerHUD({onSolo}:{onSolo:()=>void}){
  const busy=net.status==='connecting'||net.status==='reconnecting',playing=room?.phase==='playing';
  const capture=async()=>{unlockAudio();try{await document.querySelector('canvas')?.requestPointerLock();}catch{/* Drag fallback is always supported. */}network.set({menu:false});};
  const leave=()=>{network.leave();document.exitPointerLock();};
- return <div className={`interface multiplayer ${performance.now()-net.hurtAt<250?'damaged':''}`}>
+ return <div className={`interface multiplayer ${performance.now()-net.hurtAt<250?'damaged':''} ${me&&me.health<=25?'low-health':''}`}>
   <header><div className="brand"><span className="brand-symbol">◈</span> SKYFALL<span className="brand-sub">ARENA</span></div><div className="session"><i/> PRIVATE ARENA <span>/</span> {room?<span className="room-code-value">{room.code}<CopyRoomCode key={room.code} code={room.code}/></span>:'MULTIPLAYER'}</div><div className="header-actions"><button className="quiet" onClick={()=>game.set({muted:!audio.muted})}>{audio.muted?'SOUND OFF':'SOUND ON'}</button><button className="quiet" onClick={()=>{network.set({menu:true});document.exitPointerLock();}}>MENU</button></div></header>
   {playing&&<>
    <div className="wave-panel"><span>LAST PILOT STANDING</span><strong>{formatMatchTime(room.remaining)}</strong><small>{room.players.filter(p=>p.alive).length} / {room.players.length} PILOTS ALIVE · ROOM {room.code}</small></div>
    <div className="score"><span className="eyebrow">YOUR SCORE</span><strong>{me?.score??0}</strong><span>{me?.eliminations??0} ELIMINATIONS</span></div>
    {!net.menu&&me?.alive&&<div className={`crosshair ${performance.now()-net.hitAt<180?'hit':''}`}><i/><i/><i/><i/><b/></div>}
+   {performance.now()-net.killAt<1600&&<div className="notice" role="status">ELIMINATION CONFIRMED</div>}
    <div className="flight-hint">{net.status!=='connected'?'CONNECTION LOST · RECONNECTING':!me?.alive?'ELIMINATED · WATCH THE MATCH':'WASD / ARROWS MOVE · SPACE THRUST · SHIFT BOOST · LMB FIRE · ESC MENU · RMB DRAG LOOK'}</div>
    <footer><div className="telemetry"><div className="meter-label"><span>ϟ JETPACK FUEL</span><b>{Math.round(me?.fuel??0)}%</b></div><div className="meter"><div style={{width:`${me?.fuel??0}%`}}/></div><div className="health"><span>＋ HULL</span><b>{me?.health??0}</b></div></div><div className="status"><i/> SERVER AUTHORITATIVE<span>30 HZ SIMULATION / 15 HZ SNAPSHOTS</span></div></footer>
   </>}
@@ -44,6 +45,7 @@ export function MultiplayerHUD({onSolo}:{onSolo:()=>void}){
     <button className="restart" onClick={leave}>LEAVE ROOM</button>
    </>}
    {net.error&&<p className="error" role="alert">{net.error}</p>}
+   {net.status==='offline'&&room&&<button className="quiet" onClick={()=>network.reconnect()}>RECONNECT SESSION</button>}
    {busy&&<p role="status">{net.status==='reconnecting'?'Reconnecting your pilot…':'Connecting to game server…'}</p>}
    <button className="solo-link" onClick={()=>{if(room||net.status!=='offline')leave();onSolo();}}>← SINGLE-PLAYER SURVIVAL</button>
   </section></div>}
